@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التحليلات وذكاء الأعمال — عبد الله سلّام</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+
+/* ════════════════════════════
+   ROOT
+════════════════════════════ */
+:root{
+  --deep:#07111f;--navy:#0b1c30;--card:#0e1d2f;--card2:#112236;
+  --blue1:#163354;--blue2:#1a569e;
+  --accent:#00c4e4;--accent2:#3db8ff;
+  --gold:#f2b52a;--gold2:#ffb84d;
+  --purple:#8b7dff;--green:#5ed87e;--red:#ff6b6b;--teal:#2adbbc;
+  --white:#eef3ff;--soft:#b2c6e6;--muted:#6e8aaa;--dim:#3f5a78;
+  --glass:rgba(255,255,255,0.045);--gb:rgba(255,255,255,0.09);
+  --r:12px;--r2:20px;
+  --fs-xl:clamp(26px,4.5vw,46px);
+  --fs-lg:clamp(19px,3vw,30px);
+  --fs-md:clamp(16px,2vw,20px);
+  --fs-body:15.5px;
+  --fs-sm:13.5px;
+  --fs-xs:12px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--deep);
+  font-family:'Cairo','Tajawal',sans-serif;
+  color:var(--white);direction:rtl;line-height:1.82;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 90% 55% at 10% 5%,rgba(26,86,158,.22) 0%,transparent 58%),
+    radial-gradient(ellipse 65% 45% at 88% 88%,rgba(0,196,228,.12) 0%,transparent 52%),
+    radial-gradient(ellipse 55% 55% at 50% 50%,rgba(139,125,255,.05) 0%,transparent 65%);
+  pointer-events:none;
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;
+  background-image:linear-gradient(rgba(0,196,228,.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,196,228,.02) 1px,transparent 1px);
+  background-size:48px 48px;pointer-events:none;
+}
+
+/* ════ PROGRESS ════ */
+.pgbar{position:fixed;top:0;right:0;left:0;z-index:300;height:3px;background:rgba(255,255,255,.04);}
+.pgfill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));width:0;transition:width .12s;}
+
+/* ════ SIDEBAR ════ */
+.sb{
+  position:fixed;top:0;right:0;width:280px;height:100vh;
+  background:rgba(10,24,42,.97);border-left:1px solid rgba(255,255,255,.07);
+  z-index:250;transform:translateX(100%);transition:transform .3s ease;
+  overflow-y:auto;padding:20px 18px 40px;
+}
+.sb.open{transform:translateX(0);}
+.sb-close{position:absolute;top:14px;left:14px;background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:4px;}
+.sb h4{font-size:10.5px;letter-spacing:2.5px;color:var(--accent);text-transform:uppercase;margin-bottom:14px;margin-top:36px;}
+.sb a{
+  display:block;font-size:12.5px;color:var(--soft);text-decoration:none;
+  padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);
+  transition:color .15s,padding-right .15s;
+}
+.sb a:hover,.sb a.act{color:var(--white);}
+.sb a.act{border-right:2px solid var(--accent);padding-right:8px;}
+.sb a.sub{padding-right:14px;font-size:11.5px;color:var(--muted);}
+.menu-btn{
+  position:fixed;bottom:26px;left:22px;z-index:260;
+  width:48px;height:48px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue2),var(--accent));
+  border:none;cursor:pointer;font-size:19px;
+  box-shadow:0 8px 24px rgba(0,0,0,.45);transition:transform .2s;
+}
+.menu-btn:hover{transform:scale(1.1);}
+
+/* ════ LAYOUT ════ */
+.wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 20px 110px;}
+
+/* ════ HERO ════ */
+.hero{text-align:center;padding:68px 14px 60px;}
+.eyebrow{
+  display:inline-block;font-size:11px;font-weight:600;letter-spacing:3px;
+  color:var(--accent);text-transform:uppercase;
+  border:1px solid rgba(0,196,228,.28);padding:5px 18px;border-radius:50px;
+  background:rgba(0,196,228,.07);margin-bottom:20px;
+}
+.hero h1{
+  font-size:var(--fs-xl);font-weight:900;line-height:1.18;
+  background:linear-gradient(140deg,var(--white) 35%,var(--accent) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:14px;
+}
+.hero-sub{font-size:16px;color:var(--soft);font-weight:300;max-width:600px;margin:0 auto 26px;line-height:1.9;}
+.hero-meta{font-size:12px;color:var(--dim);font-style:italic;}
+.hero-line{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:28px auto 0;}
+
+.book-stat{
+  display:flex;justify-content:center;gap:36px;margin:36px 0 8px;
+  flex-wrap:wrap;
+}
+.bs{text-align:center;}
+.bs-num{font-size:28px;font-weight:900;color:var(--c,var(--accent));line-height:1;}
+.bs-lbl{font-size:11px;color:var(--muted);margin-top:4px;}
+
+/* ════ CHAPTER BLOCK ════ */
+.chapter{
+  margin-bottom:80px;
+  opacity:0;transform:translateY(22px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.chapter.vis{opacity:1;transform:none;}
+
+.ch-head{
+  display:flex;align-items:flex-start;gap:16px;
+  margin-bottom:26px;padding-bottom:18px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.ch-badge{
+  flex-shrink:0;width:60px;height:60px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:1px;
+}
+.ch-n{font-size:20px;font-weight:900;color:rgba(0,0,0,.7);line-height:1;}
+.ch-lab{font-size:8.5px;font-weight:700;letter-spacing:.8px;color:rgba(0,0,0,.45);}
+.ch-info{}
+.ch-tag{font-size:10.5px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:4px;}
+.ch-title{font-size:var(--fs-lg);font-weight:900;color:var(--white);line-height:1.22;}
+.ch-sub{font-size:13.5px;color:var(--muted);margin-top:4px;font-style:italic;}
+
+/* ════ TEXT COMPONENTS ════ */
+h3.sec{
+  font-size:17.5px;font-weight:800;color:var(--accent2);
+  margin:32px 0 12px;
+  padding-right:12px;border-right:3px solid var(--accent);
+}
+h4.sub{font-size:15px;font-weight:700;color:var(--soft);margin:22px 0 8px;}
+
+p.pr{font-size:var(--fs-body);color:var(--soft);line-height:1.95;margin-bottom:16px;font-weight:300;}
+p.pr strong{color:var(--white);font-weight:700;}
+p.pr em{color:var(--gold2);font-style:normal;}
+
+/* callout boxes */
+.box{
+  margin:18px 0;padding:15px 19px 15px 19px;
+  border-radius:0 var(--r) var(--r) 0;
+  border-right:4px solid var(--bc,var(--accent));
+  background:var(--bbg,rgba(0,196,228,.055));
+  font-size:14.5px;color:var(--btext,var(--accent2));line-height:1.85;
+}
+.box.gold{--bc:var(--gold);--bbg:rgba(242,181,42,.055);--btext:#c9a444;}
+.box.green{--bc:var(--green);--bbg:rgba(94,216,126,.05);--btext:var(--green);}
+.box.red{--bc:var(--red);--bbg:rgba(255,107,107,.055);--btext:var(--red);}
+.box.purple{--bc:var(--purple);--bbg:rgba(139,125,255,.055);--btext:var(--purple);}
+.box.teal{--bc:var(--teal);--bbg:rgba(42,219,188,.05);--btext:var(--teal);}
+
+/* lists */
+.bl{list-style:none;padding:0;margin:12px 0;}
+.bl li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:var(--fs-body);color:var(--soft);
+  padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04);line-height:1.75;
+}
+.bl li:last-child{border-bottom:none;}
+.bl li::before{content:'◆';color:var(--acc,var(--accent));font-size:6.5px;margin-top:8px;flex-shrink:0;}
+.bl.gold li::before{--acc:var(--gold);}
+.bl.green li::before{--acc:var(--green);}
+.bl.red li::before{--acc:var(--red);}
+
+/* numbered list */
+.nl{padding: 0;margin:12px 0;counter-reset:nl;}
+.nl li{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:var(--fs-body);color:var(--soft);
+  padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);
+  line-height:1.75;counter-increment:nl;
+}
+.nl li:last-child{border-bottom:none;}
+.nl li::before{
+  content:counter(nl);
+  min-width:24px;height:24px;border-radius:50%;
+  background:rgba(0,196,228,.15);color:var(--accent);
+  font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:2px;
+}
+
+/* divider */
+.div{border:none;border-top:1px solid rgba(0,196,228,.1);margin:72px 0 0;}
+
+/* ════ INFOGRAPHIC SHELL ════ */
+.ig{
+  margin:26px 0;border-radius:var(--r2);overflow:hidden;
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow:0 18px 52px rgba(0,0,0,.38);
+}
+.ig-bar{
+  background:linear-gradient(135deg,var(--card2),var(--card));
+  padding:9px 16px;font-size:11px;color:var(--muted);
+  display:flex;align-items:center;gap:7px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.ig-bar span{color:var(--accent);font-weight:700;}
+.ig-body{background:linear-gradient(140deg,#101c2c,#162538);padding:28px 24px 32px;}
+.ig-ht{text-align:center;margin-bottom:22px;}
+.ig-ht .lbl{font-size:10.5px;letter-spacing:2.5px;color:var(--c,var(--accent));text-transform:uppercase;margin-bottom:7px;}
+.ig-ht h3{font-size:var(--fs-md);font-weight:900;color:var(--white);margin-bottom:4px;line-height:1.3;}
+.ig-ht p{font-size:12px;color:var(--muted);}
+
+/* table */
+.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-sm);border-radius:var(--r);overflow:hidden;margin:14px 0;}
+.tbl th{background:var(--blue1);color:var(--white);padding:10px 13px;text-align:right;font-weight:700;font-size:12.5px;}
+.tbl td{padding:9px 13px;color:var(--soft);border-bottom:1px solid rgba(255,255,255,.04);line-height:1.6;}
+.tbl tr:nth-child(even) td{background:rgba(255,255,255,.02);}
+.tbl tr:hover td{background:rgba(0,196,228,.035);}
+
+/* small grid cards */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;}
+
+.mc{
+  background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--r);padding:16px 13px;
+  position:relative;overflow:hidden;
+  transition:background .2s,transform .2s;cursor:default;
+}
+.mc:hover{background:rgba(255,255,255,.065);transform:translateY(-3px);}
+.mc::before{content:'';position:absolute;top:0;right:0;left:0;height:3px;background:var(--c,var(--accent));}
+.mc-icon{font-size:20px;margin-bottom:7px;}
+.mc-title{font-size:13px;font-weight:700;color:var(--white);margin-bottom:5px;}
+.mc-desc{font-size:11.5px;color:var(--muted);line-height:1.6;}
+.mc-tag{display:inline-block;font-size:10px;padding:2px 9px;border-radius:20px;border:1px solid var(--c,var(--accent));color:var(--c,var(--accent));background:rgba(255,255,255,.03);margin-top:6px;}
+
+/* tier stack */
+.tiers{display:flex;flex-direction:column;gap:4px;margin:16px 0;}
+.tier{border-radius:var(--r);padding:14px 18px;border:1px solid rgba(255,255,255,.07);position:relative;overflow:hidden;}
+.tier::before{content:'';position:absolute;top:0;right:0;bottom:0;width:4px;background:var(--tc);}
+.t1{background:rgba(0,196,228,.07);--tc:var(--accent);}
+.t2{background:rgba(139,125,255,.07);--tc:var(--purple);}
+.t3{background:rgba(94,216,126,.05);--tc:var(--green);}
+.t4{background:rgba(242,181,42,.05);--tc:var(--gold);}
+.tier-h{font-size:13.5px;font-weight:700;color:var(--white);margin-bottom:5px;}
+.tier-b{font-size:12px;color:var(--muted);line-height:1.65;}
+
+/* steps row */
+.steps{display:flex;gap:0;margin:16px 0;overflow-x:auto;}
+.step{flex:1;min-width:100px;text-align:center;padding:14px 8px;position:relative;}
+.step:not(:last-child)::after{content:'←';position:absolute;left:-6px;top:50%;transform:translateY(-50%);color:var(--dim);font-size:13px;}
+.step-c{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;margin:0 auto 7px;color:var(--deep);}
+.step-lbl{font-size:11.5px;color:var(--soft);line-height:1.5;}
+
+/* spectrum */
+.spec{height:8px;border-radius:4px;background:linear-gradient(to left,var(--gold),var(--red),var(--gold2),var(--green),var(--accent));margin:8px 0;}
+.spec-ends{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:18px;}
+
+/* vs compare */
+.vs{display:grid;grid-template-columns:1fr 56px 1fr;gap:0;margin:14px 0;align-items:start;}
+.vs-s{border-radius:var(--r);padding:16px 14px;}
+.vs-push{background:rgba(0,196,228,.07);border:1px solid rgba(0,196,228,.18);}
+.vs-pull{background:rgba(255,107,107,.07);border:1px solid rgba(255,107,107,.18);}
+.vs-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:44px;gap:5px;}
+.vs-c{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--red));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;}
+.vs-l{width:2px;height:18px;background:rgba(255,255,255,.07);}
+.vs-title{font-size:13px;font-weight:700;color:var(--white);margin-bottom:6px;}
+.vs-item{font-size:11.5px;color:var(--soft);padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:center;gap:6px;}
+.vs-item:last-child{border-bottom:none;}
+.vd{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+
+/* culture items */
+.cult-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:14px 0;}
+.citem{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);padding:13px 11px;text-align:center;}
+.ci{font-size:22px;margin-bottom:6px;}
+.ci-t{font-size:12.5px;font-weight:700;color:var(--white);margin-bottom:3px;}
+.ci-d{font-size:11px;color:var(--muted);line-height:1.55;}
+
+/* soft factors bar */
+.sfbar{display:flex;gap:0;margin:14px 0;}
+.sfc{flex:1;padding:16px 12px;text-align:center;}
+.sfc:first-child{border-radius:var(--r) 0 0 var(--r);}
+.sfc:last-child{border-radius:0 var(--r) var(--r) 0;}
+.sfc-icon{font-size:26px;margin-bottom:7px;}
+.sfc-title{font-size:13px;font-weight:700;margin-bottom:5px;}
+.sfc-desc{font-size:11px;line-height:1.6;opacity:.85;}
+
+/* maturity steps */
+.mat{display:flex;gap:0;margin:16px 0;overflow-x:auto;}
+.mat-s{flex:1;min-width:95px;padding:12px 8px;text-align:center;position:relative;}
+.mat-s:not(:last-child)::after{content:'←';position:absolute;left:-5px;top:50%;transform:translateY(-50%);color:var(--dim);font-size:12px;}
+.mat-n{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:var(--deep);margin:0 auto 6px;}
+.mat-l{font-size:11px;color:var(--soft);line-height:1.45;}
+
+/* conclusion grid */
+.con-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:26px 0;}
+.con-card{
+  background:var(--glass);border:1px solid var(--gb);border-radius:var(--r);
+  padding:18px 15px;transition:transform .25s,box-shadow .25s;
+}
+.con-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.3);}
+.con-card::before{content:'';display:block;width:28px;height:3px;background:var(--cc,var(--accent));border-radius:3px;margin-bottom:10px;}
+.con-n{font-size:28px;font-weight:900;color:var(--cc,var(--accent));opacity:.3;line-height:1;margin-bottom:5px;}
+.con-t{font-size:13px;font-weight:700;color:var(--white);margin-bottom:5px;}
+.con-d{font-size:12px;color:var(--muted);line-height:1.65;}
+
+/* final quote */
+.fq{
+  text-align:center;padding:46px 26px;
+  background:linear-gradient(135deg,rgba(26,86,158,.12),rgba(0,196,228,.07));
+  border:1px solid rgba(0,196,228,.15);border-radius:var(--r2);
+  position:relative;overflow:hidden;margin-top:52px;
+}
+.fq::before{content:'❝';position:absolute;top:-18px;right:20px;font-size:110px;color:rgba(0,196,228,.06);font-family:Georgia,serif;line-height:1;}
+.fq p{font-size:17.5px;font-weight:600;color:var(--white);line-height:1.9;max-width:640px;margin:0 auto 13px;position:relative;}
+.fq cite{font-size:12px;color:var(--accent);letter-spacing:1px;}
+
+.footer{text-align:center;padding:32px 16px;font-size:12px;color:var(--dim);line-height:1.8;}
+
+/* responsive */
+@media(max-width:640px){
+  .g3,.g4{grid-template-columns:1fr 1fr;}
+  .vs{grid-template-columns:1fr;}.vs-mid{display:none;}
+  .sfbar{flex-direction:column;}
+  .sfc{border-radius:var(--r)!important;}
+  .cult-grid{grid-template-columns:1fr 1fr;}
+  .mat,.steps{flex-direction:column;}
+  .mat-s::after,.step:not(:last-child)::after{display:none;}
+}
+
+
+/* COVER */
+.cover{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:1;text-align:center;padding:60px 24px 48px;}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(0,196,228,.15) 0%,transparent 65%),radial-gradient(ellipse 60% 50% at 15% 80%,rgba(26,86,158,.18) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 85% 20%,rgba(139,125,255,.09) 0%,transparent 55%);pointer-events:none;}
+.cover-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:3px;color:var(--accent);text-transform:uppercase;border:1px solid rgba(0,196,228,.3);padding:7px 22px;border-radius:50px;background:rgba(0,196,228,.07);margin-bottom:28px;position:relative;overflow:hidden;}
+.cover-badge::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);animation:sh 3s infinite;}
+@keyframes sh{to{left:150%}}
+.cover-title{font-size:clamp(34px,7vw,68px);font-weight:900;line-height:1.1;background:linear-gradient(140deg,var(--white) 30%,var(--accent) 65%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:8px;}
+.cover-title-en{font-size:clamp(13px,2vw,17px);color:var(--dim);font-weight:300;letter-spacing:3px;display:block;margin-bottom:16px;}
+.cover-subtitle{font-size:15px;color:var(--soft);font-weight:300;max-width:560px;margin:0 auto 36px;line-height:1.9;padding:16px 24px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);}
+.cover-subtitle em{color:var(--accent2);font-style:normal;}
+.cover-line{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 36px;}
+.cover-author-block{display:flex;flex-direction:column;align-items:center;gap:10px;padding:24px 48px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:var(--r2);margin-bottom:40px;position:relative;overflow:hidden;}
+.cover-author-block::before{content:'';position:absolute;top:0;right:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--gold),var(--purple));}
+.cover-author-label{font-size:10.5px;letter-spacing:2.5px;color:var(--muted);text-transform:uppercase;}
+.cover-author-name{font-size:clamp(22px,4vw,32px);font-weight:900;background:linear-gradient(135deg,var(--white),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.cover-author-role{font-size:13px;color:var(--muted);}
+.cover-social{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:4px;}
+.social-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:50px;text-decoration:none;font-size:13px;font-weight:600;transition:transform .2s,box-shadow .2s,background .2s;border:1px solid rgba(255,255,255,.12);}
+.social-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.4);}
+.social-btn.linkedin{background:rgba(0,119,181,.15);color:#4db3f5;}
+.social-btn.linkedin:hover{background:rgba(0,119,181,.28);}
+.social-btn.facebook{background:rgba(24,119,242,.15);color:#6ba8ff;}
+.social-btn.facebook:hover{background:rgba(24,119,242,.28);}
+.social-btn.twitter{background:rgba(255,255,255,.07);color:var(--soft);}
+.social-btn.twitter:hover{background:rgba(255,255,255,.13);}
+.social-icon{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:13px;font-weight:900;}
+.social-btn.linkedin .social-icon{background:rgba(0,119,181,.3);}
+.social-btn.facebook .social-icon{background:rgba(24,119,242,.3);}
+.social-btn.twitter .social-icon{background:rgba(255,255,255,.1);}
+.cover-divider{width:100%;max-width:380px;border:none;border-top:1px solid rgba(255,255,255,.06);margin:28px auto;}
+.cover-scroll{font-size:12px;color:var(--dim);letter-spacing:1px;animation:bob 2s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+/* EXAMPLE BLOCKS */
+.example-block{margin:22px 0;border-radius:var(--r2);overflow:hidden;border:1px solid rgba(94,216,126,.2);box-shadow:0 8px 24px rgba(0,0,0,.25);}
+.example-header{background:linear-gradient(135deg,rgba(30,60,36,.7),rgba(20,50,28,.7));padding:10px 18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(94,216,126,.12);}
+.example-header span.et{font-size:12px;font-weight:700;color:var(--green);letter-spacing:.5px;}
+.example-badge{font-size:10px;padding:2px 10px;border-radius:20px;background:rgba(94,216,126,.12);color:var(--green);border:1px solid rgba(94,216,126,.2);}
+.example-body{background:linear-gradient(135deg,rgba(8,20,12,.7),rgba(12,28,16,.7));padding:18px 22px;font-size:14.5px;color:#9de3b0;line-height:1.9;}
+.example-body strong{color:var(--green);}
+.example-body .ex-q{font-size:13px;color:var(--muted);margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);font-style:italic;}
+/* BEGINNER NOTE */
+.bgn{margin:18px 0;padding:14px 20px 14px 14px;background:rgba(139,125,255,.07);border:1px solid rgba(139,125,255,.2);border-radius:var(--r);font-size:14px;color:#c0b8ff;line-height:1.85;position:relative;}
+.bgn::before{content:'🔰';position:absolute;top:14px;right:18px;font-size:16px;}
+.bgn-text{padding-right:36px;}
+/* ANALOGY */
+.analogy{margin:20px 0;padding:16px 20px;background:rgba(242,181,42,.06);border:1px solid rgba(242,181,42,.16);border-radius:var(--r);position:relative;overflow:hidden;}
+.analogy::before{content:'';position:absolute;top:0;right:0;bottom:0;width:4px;background:linear-gradient(to bottom,var(--gold),var(--gold2));}
+.analogy-hd{font-size:10.5px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;font-weight:700;padding-right:4px;}
+.analogy-body{font-size:14.5px;color:#d4aa60;line-height:1.85;}
+/* BEFORE/AFTER */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;}
+.ba-s{padding:16px 14px;border-radius:var(--r);border:1px solid rgba(255,255,255,.07);}
+.ba-before{border-color:rgba(255,107,107,.2);background:rgba(255,107,107,.04);}
+.ba-after{border-color:rgba(94,216,126,.2);background:rgba(94,216,126,.04);}
+.ba-lbl{font-size:10.5px;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;margin-bottom:8px;}
+.ba-before .ba-lbl{color:var(--red);}
+.ba-after  .ba-lbl{color:var(--green);}
+.ba-text{font-size:13px;color:var(--soft);line-height:1.7;}
+/* QUOTE BLOCK */
+.qb{margin:22px 0;padding:20px 24px;text-align:center;background:linear-gradient(135deg,rgba(26,86,158,.1),rgba(0,196,228,.06));border:1px solid rgba(0,196,228,.14);border-radius:var(--r2);position:relative;overflow:hidden;}
+.qb::before{content:'\275D';position:absolute;top:-12px;right:14px;font-size:80px;color:rgba(0,196,228,.07);line-height:1;}
+.qb p{font-size:16px;font-weight:600;color:var(--white);line-height:1.9;position:relative;}
+.qb cite{font-size:11.5px;color:var(--accent);margin-top:8px;display:block;}
+@media(max-width:600px){.ba{grid-template-columns:1fr;}.cover-social{flex-wrap:wrap;}.cover-author-block{padding:20px 24px;}}
+
+</style>
+</head>
+<body>
+<div class="pgbar"><div class="pgfill" id="pg"></div></div>
+
+<nav class="sb" id="sb">
+  <button class="sb-close" onclick="toggleSB()">✕</button>
+  <h4>الكتاب</h4>
+  <a href="#cover">الغلاف</a>
+  <a href="#hero">نظرة عامة</a>
+  <h4>الفصول</h4>
+  <a href="#ch1">١ · التحدي الإنساني</a>
+  <a href="#ch2">٢ · التعريف والمشكلة</a>
+  <a href="#ch2-insights" class="sub">الرؤى — المنتج النهائي</a>
+  <a href="#ch3">٣ · الاحتياجات والأنظمة</a>
+  <a href="#ch3-cycle" class="sub">دورة الذكاء الست</a>
+  <a href="#ch4">٤ · أبعاد ذكاء الأعمال</a>
+  <a href="#ch4-7dim" class="sub">المحاور السبعة</a>
+  <a href="#ch4-tier" class="sub">النهج الطبقي</a>
+  <a href="#ch5">٥ · تكامل المعلومات</a>
+  <a href="#ch5-sst" class="sub">مصدر الحقيقة الواحد</a>
+  <a href="#ch5-sense" class="sub">التكامل وصنع المعنى</a>
+  <a href="#ch6">٦ · الخبرة والدروس</a>
+  <a href="#ch6-barrier" class="sub">العائق الثقافي</a>
+  <a href="#ch7">٧ · التقنيات</a>
+  <a href="#ch7-excel" class="sub">إشكالية Excel</a>
+  <a href="#ch8">٨ · النضج والرشاقة</a>
+  <a href="#ch8-agility" class="sub">ما بعد النضج</a>
+  <a href="#ch9">٩ · الثقافة المؤسسية</a>
+  <a href="#ch9-culture" class="sub">سمات الثقافة الصحية</a>
+  <a href="#ch10">١٠ · العوامل الناعمة</a>
+  <a href="#ch10-trio" class="sub">الثالوث الناعم</a>
+  <a href="#ch11">١١ · ذكاء شامل</a>
+  <a href="#conclusion">الخلاصة الكبرى</a>
+  <hr style="border-color:rgba(255,255,255,.07);margin:18px 0 14px;">
+  <h4>تواصل</h4>
+  <a href="https://www.linkedin.com/in/abdullah-sallam-2081a740/" target="_blank" style="color:#4db3f5;">🔗 LinkedIn</a>
+  <a href="https://www.facebook.com/share/1DeabdfTtz/" target="_blank" style="color:#6ba8ff;">📘 Facebook</a>
+  <a href="https://x.com/AbdullahSa45809" target="_blank" style="color:var(--soft);">𝕏 X (Twitter)</a>
+</nav>
+
+<button class="menu-btn" onclick="toggleSB()">📚</button>
+
+
+<div class="cover" id="cover">
+  <div class="cover-badge">📊 ملخص أكاديمي · للمبتدئين والمحترفين</div>
+  <span class="cover-title">التحليلات وذكاء الأعمال</span>
+  <span class="cover-title-en">Business Intelligence &amp; Analytics</span>
+  <p class="cover-subtitle">
+    ملخص من كتاب <em>Business Intelligence</em> — ريمفيداس سكيريوس (Springer, 2021)<br>
+    مع أمثلة مبسّطة وشرح موجّه للمبتدئين
+  </p>
+  <div class="cover-line"></div>
+  <div class="cover-author-block">
+    <span class="cover-author-label">إعداد</span>
+    <span class="cover-author-name">عبد الله سلّام</span>
+    <span class="cover-author-role">متخصص في التحليلات وذكاء الأعمال</span>
+    <div class="cover-social">
+      <a href="https://www.linkedin.com/in/abdullah-sallam-2081a740/" target="_blank" rel="noopener" class="social-btn linkedin">
+        <span class="social-icon">in</span> LinkedIn
+      </a>
+      <a href="https://www.facebook.com/share/1DeabdfTtz/" target="_blank" rel="noopener" class="social-btn facebook">
+        <span class="social-icon">f</span> Facebook
+      </a>
+      <a href="https://x.com/AbdullahSa45809" target="_blank" rel="noopener" class="social-btn twitter">
+        <span class="social-icon" style="font-family:serif;">𝕏</span> X (Twitter)
+      </a>
+    </div>
+  </div>
+  <hr class="cover-divider">
+  <span class="cover-scroll">اسحب للأسفل للبدء ↓</span>
+</div>
+
+
+<div class="wrap">
+
+<div class="hero" id="hero">
+  <div class="eyebrow">ملخص تفصيلي · ١١ فصلاً · مع أمثلة للمبتدئين</div>
+  <h1>ذكاء الأعمال</h1>
+  <p class="hero-sub">نهج شامل لاحتياجات المعلومات والتقنيات والثقافة المؤسسية<br>مع أمثلة مبسّطة من الحياة الواقعية لكل مستوى</p>
+  <p class="hero-meta">ريمفيداس سكيريوس · Springer، 2021 · إعداد: <strong style="color:var(--accent2)">عبد الله سلّام</strong></p>
+  <div class="hero-line"></div>
+  <div class="book-stat">
+    <div class="bs" style="--c:#00c4e4"><div class="bs-num">١١</div><div class="bs-lbl">فصلاً</div></div>
+    <div class="bs" style="--c:#f2b52a"><div class="bs-num">~٢٨٠</div><div class="bs-lbl">صفحة</div></div>
+    <div class="bs" style="--c:#8b7dff"><div class="bs-num">450+</div><div class="bs-lbl">مصدر بحثي</div></div>
+    <div class="bs" style="--c:#5ed87e"><div class="bs-num">20+</div><div class="bs-lbl">مثال واقعي</div></div>
+  </div>
+  <div class="box gold" style="font-size:15px;text-align:right;">
+    🎯 <strong>الأطروحة المحورية:</strong> ذكاء الأعمال يعاني من خلل — يُعطى الجانب التقني أكثر مما يستحق، ويُهمَل الجانب الإنساني أكثر مما ينبغي. هذا الملخص يُضيف أمثلة واقعية وشروحات مبسّطة تُقرّب كل مفهوم لكل قارئ.
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ══════════════════════════════
+     CHAPTER 1
+══════════════════════════════ -->
+<div class="chapter" id="ch1">
+  <div class="ch-head">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#00c4e4,#1a569e)">
+      <div class="ch-n">١</div><div class="ch-lab">CH 1</div>
+    </div>
+    <div class="ch-info">
+      <div class="ch-tag">الفصل الأول</div>
+      <div class="ch-title">ذكاء الأعمال: التحدي الإنساني</div>
+      <div class="ch-sub">لماذا تفشل أنظمة ذكاء الأعمال رغم التقنية المتقدمة؟</div>
+    </div>
+  </div>
+
+  <p class="pr">يضع الكتاب نقطة انطلاقه في مفارقة صارخة: الشركات تُنفق مليارات الدولارات سنوياً على تقنيات ذكاء الأعمال، ومع ذلك تُسجَّل نسب فشل مقلقة في هذه المشاريع. السبب، كما يُجادل المؤلف بإصرار، ليس في التقنية ذاتها — فالبرمجيات والأنظمة تؤدي ما صُمِّمت له بدقة. المشكلة في <strong>الخلل بين الاهتمام بالتقنية والاهتمام بالإنسان</strong>، في صالح الأولى على حساب الثانية.</p>
+<div class="analogy"><div class="analogy-hd">🔄 تشبيه يُقرّب الفكرة</div><div class="analogy-body"><strong>ذكاء الأعمال مثل نظارة طبية:</strong><br>البيانات موجودة دائماً في الشركة — لكنها ضبابية ومبعثرة. ذكاء الأعمال هو النظارة التي تُصحّح النظر وتُحوّل الضباب إلى رؤية واضحة قابلة للتصرف. بدونها تعمل وكأنك تقود في ضباب كثيف.</div></div>
+
+
+  <p class="pr">يستشهد المؤلف بملاحظة Feldman وMarch (1981) التي ما زالت صالحة حتى اليوم: "بعض السلوكيات البشرية الغريبة قد تحمل شفرات ذكاء لا تعكسها النماذج الهندسية بشكل كافٍ". يزيد على ذلك بملاحظة أعمق: في مجال يُسمّى صراحةً "ذكاء الأعمال"، أصبح التركيز على التقنية باعتبارها هي الذكية، بينما <em>الذكاء الحقيقي ينبثق من الأنشطة الاستخباراتية للناس أنفسهم</em>.</p>
+
+  <div class="box">
+    📌 <strong>هربرت سيمون (1971)، الحائز على جائزة نوبل:</strong> "تصميم نظام استخباري يعني اتخاذ قرارات حول: متى تجمع المعلومات؛ وأين تخزّنها وبأي شكل؛ وكيف تُعيد صياغتها وتكثيفها؛ وكيف تُفهرسها وتُتيح الوصول إليها؛ ومتى ولمن تُرسلها." هذا التعريف المُصاغ منذ خمسة عقود لا يزال يُلخّص جوهر التحدي حتى اليوم.
+  </div>
+
+  <h3 class="sec">إشكاليات المجال السبع</h3>
+  <p class="pr">يُعدّد المؤلف التحديات الرئيسية التي تُعيق تحقيق ذكاء الأعمال لإمكاناته الكاملة:</p>
+  <ul class="bl">
+    <li><strong>تعقيد بيئة المعلومات المتنامي:</strong> ظاهرة البيانات الضخمة بأبعادها الثلاثة (الحجم، السرعة، التنوع) أضافت ضغطاً متزايداً على أنظمة الذكاء التقليدية.</li>
+    <li><strong>محدودية أنظمة ERP:</strong> هذه الأنظمة ممتازة في تسجيل ما جرى وتوثيقه، لكنها عاجزة بطبيعتها عن تحقيق الذكاء المطلوب من تفسير وتنبؤ.</li>
+    <li><strong>التناقض بين الحاجة والإحجام:</strong> المستخدمون يحتاجون المعلومات لكنهم في الوقت ذاته يُحجمون عن استخدام الأنظمة المتاحة، لأنها تتطلب وقتاً وانتباهاً إضافيَّين.</li>
+    <li><strong>تضارب أهداف أصحاب المصلحة:</strong> في كثير من الأحيان، تتعارض أهداف المديرين المختلفين، وتصبح المعلومة سلاحاً في معارك النفوذ بدلاً من أداة للتحسين.</li>
+    <li><strong>الاهتمام بإنتاج المعلومة لا باستخدامها:</strong> كثير من مشاريع ذكاء الأعمال تُركّز على "إتاحة" البيانات، لكنها لا تضمن "استخدامها" بفاعلية.</li>
+    <li><strong>إشكاليات تكامل المصادر:</strong> الجمع بين مصادر داخلية وخارجية، منظمة وغير منظمة، موثوقة وغير موثوقة، مهمة تقنية وإنسانية بالغة التعقيد.</li>
+    <li><strong>المعلومات الناعمة وصعوبة معالجتها:</strong> التقديرات النوعية، الحدوس، المعلومات غير الرسمية — ضرورية للقرار لكنها تُقاوم الأتمتة بطبيعتها.</li>
+  </ul>
+
+  
+<div class="example-block">
+  <div class="example-header">
+    <span class="et">💡 التحديات السبع في شركة حقيقية</span>
+    <span class="example-badge">مثال واقعي</span>
+  </div>
+  <div class="example-body"><strong>شركة تجزئة إقليمية كبيرة:</strong> تمتلك 12 فرعاً وموقعاً إلكترونياً. اشترت برنامج تحليل بـ200,000 دولار. بعد 18 شهراً، لا يستخدمه إلا محللان اثنان من أصل 80 موظفاً.<br><br>
+<strong>ما الذي حدث؟</strong><br>
+🔴 المديرون لم يُشاركوا في تصميمه — فلا يثقون به<br>
+🔴 كل قسم عنده "Excel خاص" يُتمسّك به<br>
+🔴 أرقام المبيعات تتعارض بين التقرير وبين "إكسل المدير"<br>
+🔴 التقارير تُخبر بماذا حدث ولا تُخبر لماذا<br><br>
+<em class="ex-q">هل تعمل في شركة تعيش نفس الوضع؟ هذا الكتاب يشرح السبب ويُقدّم الحل.</em></div>
+</div>
+<h3 class="sec">ما الجديد في هذا الكتاب؟</h3>
+  <p class="pr">يُقدّم المؤلف مساهمته الأصيلة في هذا المجال من خلال ستة محاور تحليلية لم تحظَ بالاهتمام الكافي في الأدبيات السابقة:</p>
+  <ul class="bl gold">
+    <li><strong>تحليل مفصّل لاحتياجات المعلومات التجارية</strong> وتصنيفها حسب أبعاد متعددة.</li>
+    <li><strong>العلاقة بين أبعاد الأعمال وأبعاد ذكاء الأعمال</strong> — لكل شركة بصمة معلوماتية تنعكس في تصميم نظامها.</li>
+    <li><strong>التوازن بين العوامل الصلبة (التقنية) والناعمة (الإنسانية)</strong> — وهو جوهر الكتاب.</li>
+    <li><strong>العلاقة بين نضج ذكاء الأعمال ورشاقته</strong> — وهو تمييز دقيق وإضافة أصيلة.</li>
+    <li><strong>تحديد ملامح وسمات ثقافة ذكاء الأعمال</strong> المؤسسية من خلال أبحاث ميدانية.</li>
+    <li><strong>تحليل العوامل الناعمة</strong> كالانتباه والمعنى والثقة — وهي عوامل شبه غائبة من الأدب الأكاديمي.</li>
+  </ul>
+
+  <div class="box teal">
+    🎓 <strong>الجمهور المستهدف:</strong> الكتاب يخاطب ثلاث فئات: الباحثين الأكاديميين في مجال تطبيق وقبول ذكاء الأعمال ونضجه وثقافته؛ وطلاب برامج ذكاء الأعمال وتحليلات الأعمال؛ والممارسين الميدانيين الذين يستخدمون التحليلات والذكاء الاصطناعي ويحتاجون إلى إطار مفاهيمي متكامل لصياغة الأسئلة الصحيحة وتفسير النتائج.
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ══════════════════════════════
+     CHAPTER 2
+══════════════════════════════ -->
+<div class="chapter" id="ch2">
+  <div class="ch-head">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#3db8ff,#163354)">
+      <div class="ch-n">٢</div><div class="ch-lab">CH 2</div>
+    </div>
+    <div class="ch-info">
+      <div class="ch-tag">الفصل الثاني</div>
+      <div class="ch-title">ذكاء الأعمال: التعريف وفضاء المشكلة</div>
+      <div class="ch-sub">من التعريف إلى المنتج النهائي — ما هو ذكاء الأعمال حقاً؟</div>
+    </div>
+  </div>
+
+  <p class="pr">يُعاني مجال ذكاء الأعمال من تعدد التعريفات وتداخلها بشكل يُربك الممارسين والباحثين على حدٍّ سواء. يرصد الفصل الثاني عشرات التعريفات المنشورة ويكشف تدريجياً ماذا يقصد الكتاب بذكاء الأعمال تحديداً — وكيف يتميز عن مجرد "التقارير" أو "قواعد البيانات".</p>
+<div class="bgn"><div class="bgn-text">إذا كنت جديداً على المجال: ذكاء الأعمال هو القدرة على اتخاذ قرارات مبنية على معلومات موثوقة. تخيّل أنك تدير مطعماً — ذكاء الأعمال يُخبرك أي الأطباق الأكثر مبيعاً، وأي الساعات الأكثر ازدحاماً، وأي العملاء لا يعودون. هذه المعلومات تُحوّل تخميناتك إلى قرارات مدروسة.</div></div>
+
+
+  <h3 class="sec">البيئة التجارية كـ"هدف متحرك"</h3>
+  <p class="pr">يبدأ الفصل بوصف المشهد الذي يستدعي ذكاء الأعمال: بيئة أعمال شديدة الديناميكية يُفرز فيها المنافسة العالمية، وتذبذب الطلب، والتشريعات المتغيرة، والمفاجآت التقنية — ضغوطاً متزايدة على مفاهيم الوعي والاستجابة السريعة. يستشهد بدراسة Gilad (2004) على مديري Fortune 500:</p>
+  <div class="ig">
+    <div class="ig-bar"><span>بيانات بحثية</span> — Gilad 2004: ٤٩٢ شركة Fortune 500</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:#f2b52a"><div class="lbl">اكتشاف صادم</div><h3>92% من شركات Fortune 500 تفاجأت بأحداث غيّرت مواقعها التنافسية</h3></div>
+      <div class="g2">
+        <div style="background:rgba(242,181,42,.07);border:1px solid rgba(242,181,42,.18);border-radius:var(--r);padding:18px 15px;">
+          <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:12px;">السؤال الأول: هل تتوقع مخاطر متصاعدة خلال 2-3 سنوات؟</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>محتملة جداً: 44.1%</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>محتملة: 36.3%</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>محتملة نوعاً ما: 17.6%</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>غير محتملة: 2.0%</div>
+        </div>
+        <div style="background:rgba(255,107,107,.07);border:1px solid rgba(255,107,107,.18);border-radius:var(--r);padding:18px 15px;">
+          <div style="font-size:13px;font-weight:700;color:var(--red);margin-bottom:12px;">السؤال الثاني: كم مرة تفاجأت مؤسستك خلال 5 سنوات؟</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>لم تتفاجأ أبداً: 8%</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>1-3 مرات: 68%</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>أكثر من 3 مرات: 24%</div>
+        </div>
+      </div>
+      <div class="box red" style="margin-top:14px;">⚠️ الشركات التي تتوقع المخاطر ومع ذلك تتفاجأ — هذا بالضبط هو الفجوة التي يُغلقها ذكاء الأعمال. المشكلة ليست في الوعي بالخطر، بل في <strong>الممارسات المعلوماتية والثقافية</strong> التي تُعيق رصده وتفسيره مبكراً.</div>
+    </div>
+  </div>
+
+  <h3 class="sec">تعريف ذكاء الأعمال — من بين التعريفات المتعددة</h3>
+  <p class="pr">يستعرض الفصل مسيرة تطور تعريفات ذكاء الأعمال منذ Luhn (1958) الذي أوّل من استخدم المصطلح في مقاله التقني، مروراً بتعريفات Dressner في Gartner (1989)، وصولاً إلى التعريفات المعاصرة. ويلفت النظر إلى مفارقة طريفة: تعريفات "أنظمة المعلومات الإدارية" من السبعينيات والثمانينيات تبدو متطابقة تقريباً مع تعريفات "ذكاء الأعمال" الحديثة — مما يُشير إلى استمرارية جوهرية في الحاجة رغم تغيّر المسميات.</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>إنفوجرافيك</span> — أربعة وجوه لذكاء الأعمال</div>
+    <div class="ig-body">
+      <div class="ig-ht"><div class="lbl">الفصل الثاني</div><h3>ذكاء الأعمال: أربعة أوجه لشيء واحد</h3><p>كل وجه صحيح ولكن ناقص — الصورة الكاملة تجمع الأربعة معاً</p></div>
+      <div class="g2">
+        <div class="mc" style="--c:#00c4e4">
+          <div class="mc-icon">🔄</div>
+          <div class="mc-title">نظام معلومات (Information System)</div>
+          <div class="mc-desc">طبقة البيانات ← طبقة التحليل ← طبقة العرض. يدمج مصادر داخلية (ERP، CRM) وخارجية ويُنتج تقارير ولوحات متابعة ونتائج قابلة للاستخدام.</div>
+          <span class="mc-tag">منظور تقني بنيوي</span>
+        </div>
+        <div class="mc" style="--c:#f2b52a">
+          <div class="mc-icon">🔁</div>
+          <div class="mc-title">عملية دورية (Cyclical Process)</div>
+          <div class="mc-desc">تعريف الحاجة ← جمع المعلومات ← معالجة ← تحليل ← نشر ← استخدام وتغذية راجعة. الدورة لا تنتهي — كل نتيجة تُولّد أسئلة جديدة.</div>
+          <span class="mc-tag">منظور عملياتي</span>
+        </div>
+        <div class="mc" style="--c:#8b7dff">
+          <div class="mc-icon">🛠️</div>
+          <div class="mc-title">منصة تقنيات (Technology Stack)</div>
+          <div class="mc-desc">مستودعات البيانات، OLAP، التنقيب، نماذج التنبؤ، تحليل النصوص، تصوير البيانات. كل أداة تُعالج نوعاً محدداً من احتياجات الذكاء.</div>
+          <span class="mc-tag">منظور أدواتي</span>
+        </div>
+        <div class="mc" style="--c:#5ed87e">
+          <div class="mc-icon">⛓️</div>
+          <div class="mc-title">سلسلة قيمة (Value Chain)</div>
+          <div class="mc-desc">من أسئلة بسيطة ("كم طلباً أُنجز؟") إلى أعقد ("ما أفضل استراتيجية لدخول هذا السوق؟"). كل مستوى يُضيف قيمة على المستوى الأدنى منه.</div>
+          <span class="mc-tag">منظور إنشاء القيمة</span>
+        </div>
+      </div>
+      <div class="box" style="margin-top:16px;">
+        📚 <strong>التعريف المعتمد في الكتاب:</strong> ذكاء الأعمال هو <em>الممارسة المؤسسية</em> التي تجمع بشكل متسق: الناس، وعمليات المعلومات، وأعراف استخدام منصة تقنية شاملة — لتلبية احتياجات المعلومات التجارية التي تتراوح بين متوسطة وعالية التعقيد.
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec" id="ch2-insights">الرؤى (Insights) — المنتج النهائي الحقيقي</h3>
+  <p class="pr">الهدف النهائي لكل نشاط في ذكاء الأعمال ليس "بيانات" أو "تقارير" أو حتى "معلومات" — بل <strong>رؤى</strong>: فهم عميق متكامل يُغلق فجوة جوهرية في إدراك الموقف ويُمكّن من التصرف الذكي.</p>
+  <p class="pr">يستشهد المؤلف بتعريف Vriens وVerhulst (2008): "الرؤية هي فكرة أو حقيقة أو مجموعة بيانات أو تحليل يُحدث ويُعمّق الفهم، ولديه القدرة على توجيه الأعمال أو إعادة التفكير فيها." أو بصياغة أبسط من Wills (2013): <em>"الرؤية هي معلومة تصنع فارقاً."</em></p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>تحليل</span> — مراحل إدارة الرؤية (Davenport 2015)</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:var(--green)"><div class="lbl">كيف تُولَد الرؤية</div><h3>الرؤية ليست لحظة عشوائية — إنها عملية تُدار</h3></div>
+      <div class="steps">
+        <div class="step"><div class="step-c" style="background:#00c4e4">١</div><div class="step-lbl">تأطير المشكلة</div></div>
+        <div class="step"><div class="step-c" style="background:#3db8ff">٢</div><div class="step-lbl">إنشاء الرؤية</div></div>
+        <div class="step"><div class="step-c" style="background:#8b7dff">٣</div><div class="step-lbl">تسويق الرؤية داخلياً</div></div>
+        <div class="step"><div class="step-c" style="background:#f2b52a">٤</div><div class="step-lbl">استهلاك الرؤية</div></div>
+        <div class="step"><div class="step-c" style="background:#ff6b6b">٥</div><div class="step-lbl">التصرف بناءً عليها</div></div>
+        <div class="step"><div class="step-c" style="background:#5ed87e">٦</div><div class="step-lbl">تخزين الرؤية وإعادة استخدامها</div></div>
+      </div>
+      <div class="box gold">
+        📖 <strong>مثال حي — شركة Greyhound للحافلات:</strong> بعد مراجعة عملياتها في الممر الشمالي الشرقي (بوسطن-نيويورك-واشنطن)، اكتشفت الشركة رؤيتَين: معظم الرحلات لا تُحجَز مسبقاً، والجداول كانت مُصمَّمة لراحة الشركة لا العميل. بعد تعديل الجداول لتصبح كل ساعة أو نصف ساعة — <strong>ارتفع الإيراد 25% دون أي إنفاق تسويقي إضافي.</strong> هذه الرؤية ليست "بيانات" — إنها فهم عميق أفضى إلى تحول حقيقي.
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec">الإخبار المتقدم (Advanced Informing)</h3>
+  <p class="pr">يُقدّم المؤلف مفهوماً أصيلاً: <strong>الإخبار المتقدم</strong> — وهو الإطار الشامل الذي يحتوي ذكاء الأعمال. "المتقدم" لا يعني فقط استخدام تقنيات أكثر تطوراً — بل يعني التعامل مع مستويات أعلى من التعقيد، وإخفاء هذا التعقيد عن المستخدم، والحرص على أن التغطية واسعة وشاملة للمصادر الداخلية والخارجية، المنظمة وغير المنظمة.</p>
+
+  
+<div class="example-block">
+  <div class="example-header">
+    <span class="et">💡 الأربعة أوجه بلغة مبسّطة — مثال صاحب مطعم</span>
+    <span class="example-badge">مثال واقعي</span>
+  </div>
+  <div class="example-body"><strong>كيف يرى صاحب مطعم ذكاءه التجاري؟</strong><br><br>
+🔵 <strong>كنظام معلومات:</strong> جهاز لوحي يُظهر مبيعاته كل ساعة من الصندوق + التطبيق + الطلبات الهاتفية معاً في شاشة واحدة<br>
+🔄 <strong>كعملية دورية:</strong> كل مساء يُراجع الأرقام → يُحدد أكثر الأطباق مبيعاً وأقلها → يُقرّر اليوم التالي → يُتابع التأثير<br>
+🛠️ <strong>كتقنيات:</strong> كاشير إلكتروني + Excel للمقارنة + تقرير أسبوعي بسيط — كلها أدوات ذكاء أعمال!<br>
+⛓️ <strong>كسلسلة قيمة:</strong> من "كم بعنا من البرغر اليوم؟" ← إلى "لماذا هبطت مبيعاتنا في ديسمبر؟" ← إلى "ما الوجبة الجديدة التي يريدها عملاؤنا؟"<br><br>
+<em>الصورة الكاملة تجمع الأربعة معاً.</em></div>
+</div>
+<h3 class="sec">صعوبة قياس فوائد ذكاء الأعمال</h3>
+  <p class="pr">من أكثر المباحث أمانةً في الفصل: الاعتراف بصعوبة قياس عائد الاستثمار في ذكاء الأعمال. يستشهد بعدة دراسات تُلخّص المعضلة:</p>
+  <ul class="bl">
+    <li><strong>الفوائد التشغيلية</strong> (تقليل ازدواجية البيانات، توفير وقت المحللين) سهلة القياس لكن أثرها محلي ومحدود.</li>
+    <li><strong>الفوائد الاستراتيجية</strong> (دعم تحقيق الأهداف الكبرى) عميقة الأثر لكن يستحيل عزوها لنظام بعينه — لأن القرار الجيد هو محصلة عوامل بشرية ومعلوماتية لا يمكن فصلها.</li>
+    <li><strong>بديل القياس المقترح:</strong> بدلاً من قياس الفوائد المحققة، قِس الخسائر التي كانت ستقع بدون ذكاء الأعمال — وهو منطق "التأمين" الذي يتجاهله كثيرون.</li>
+  </ul>
+  <div class="box gold">
+    💡 <strong>الخلاصة العملية:</strong> قياس قيمة ذكاء الأعمال مسؤولية مستخدمي الأعمال (Business Users)، لا متخصصي التقنية — لأنهم وحدهم يرون كيف أسهمت المعلومة في التحسين. هذا التحويل للمسؤولية شرط أساسي لتبرير الاستثمار بصدق.
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ══════════════════════════════
+     CHAPTER 3
+══════════════════════════════ -->
+<div class="chapter" id="ch3">
+  <div class="ch-head">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#8b7dff,#163354)">
+      <div class="ch-n">٣</div><div class="ch-lab">CH 3</div>
+    </div>
+    <div class="ch-info">
+      <div class="ch-tag">الفصل الثالث</div>
+      <div class="ch-title">الاحتياجات المعلوماتية: الأنظمة والأنشطة المرتبطة</div>
+      <div class="ch-sub">تصنيف دقيق للاحتياجات ودورة الذكاء وعلاقته بالأنظمة الأخرى</div>
+    </div>
+  </div>
+
+  <p class="pr">من أغنى فصول الكتاب وأدقّها. يُعالج سؤالاً جوهرياً: ما الذي نحتاج معرفته؟ ومتى؟ وكيف يختلف نوع الاحتياج عن آخر؟ ثم يرسم علاقات ذكاء الأعمال بالمنظومة الأوسع من أنظمة المعلومات ويُقدّم نماذج دورة الذكاء.</p>
+<div class="bgn"><div class="bgn-text">للمبتدئين — تخيّل أنك تحضّر لامتحان: السؤال البسيط 'ما مادة الامتحان؟' يحتاج جواباً في ثوانٍ. أما 'ما احتمال نجاحي وكيف أُحسّن فرصي؟' فيحتاج: تحليل نتائجك السابقة + معرفة نمط الامتحان + دراسة نقاط ضعفك. هذا الفرق بين الاحتياج البسيط والمعقد في مجال الأعمال.</div></div>
+
+
+  <h3 class="sec">تصنيف الاحتياجات المعلوماتية: ثلاثة محاور</h3>
+
+  <div class="ig">
+    <div class="ig-bar"><span>إطار تحليلي</span> — تصنيف الاحتياجات المعلوماتية</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:var(--purple)"><div class="lbl">المحور الأول</div><h3>الاحتياجات البسيطة مقابل المعقدة</h3></div>
+      <div class="g2">
+        <div style="background:rgba(0,196,228,.07);border:1px solid rgba(0,196,228,.18);border-radius:var(--r);padding:18px 15px;">
+          <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:10px;">🎯 الاحتياجات البسيطة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>ذات طابع روتيني ومتكرر</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>مصدر واحد أو عدد محدود من المصادر</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>النتيجة متوقعة ومُخطَّط لها مسبقاً</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>تُجيبها الأنظمة التشغيلية بشكل مباشر</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>مثال: كم طلباً أُنجز اليوم؟</div>
+        </div>
+        <div style="background:rgba(255,107,107,.07);border:1px solid rgba(255,107,107,.18);border-radius:var(--r);padding:18px 15px;">
+          <div style="font-size:13px;font-weight:700;color:var(--red);margin-bottom:10px;">🔥 الاحتياجات المعقدة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>أقل روتينية بكثير — مبادرة من مواقف مهمة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>مصادر متعددة وغير متجانسة في الغالب</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>الأسئلة قد تتغير خلال عملية البحث ذاتها</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>دور أكبر للمعلومات الناعمة والحكم البشري</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>مثال: هل يجب الاستحواذ على المنافس الفلاني؟</div>
+        </div>
+      </div>
+      <div style="height:18px;"></div>
+      <div class="ig-ht" style="--c:var(--gold)"><div class="lbl">المحور الثاني</div><h3>الاحتياجات الشائعة مقابل الخاصة</h3></div>
+      <div class="g2">
+        <div style="background:rgba(94,216,126,.06);border:1px solid rgba(94,216,126,.18);border-radius:var(--r);padding:14px 13px;">
+          <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px;">📡 الاحتياجات الشائعة (مستمرة)</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>رصد مستمر للبيئة — مثل "المسح البيئي"</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>إجراءات واضحة وقابلة للتكرار</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>قابلة للتخطيط المسبق وتخصيص الموارد</div>
+        </div>
+        <div style="background:rgba(242,181,42,.06);border:1px solid rgba(242,181,42,.18);border-radius:var(--r);padding:14px 13px;">
+          <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:8px;">🎯 الاحتياجات الخاصة (ظرفية)</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>تنشأ لموقف محدد — كعملية استحواذ</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>عشوائية وصعبة التخطيط المسبق</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>تتطلب انتباهاً تحليلياً مكثفاً ومؤقتاً</div>
+        </div>
+      </div>
+      <div style="height:16px;"></div>
+      <div class="ig-ht" style="--c:var(--teal)"><div class="lbl">المحور الثالث</div><h3>الاحتياجات المتكررة مقابل الفريدة</h3></div>
+      <table class="tbl">
+        <thead><tr><th></th><th>خاصة (ظرفية)</th><th>شائعة (مستمرة)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>متكررة</strong></td><td>إطار معروف يُطبَّق على مواقف متشابهة كعمليات الاندماج (دعم تقني متوسط إلى عالٍ)</td><td>تُجيبها الأنظمة تلقائياً — "كم طلباً؟" — دعم تقني عالٍ</td></tr>
+          <tr><td><strong>فريدة/عشوائية</strong></td><td>مواقف غير مسبوقة كنموذج أعمال جديد كلياً (دعم تقني محدود — يعتمد على التحليل البشري)</td><td>رصد ابتكارات أو أسواق ناشئة — الأدوات التقليدية قد تفشل (دعم تقني منخفض إلى متوسط)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3 class="sec">المعلومات التي لا يعرف المديرون أنهم يحتاجونها</h3>
+  <p class="pr">نتيجة بحثية مفاجئة جمعها المؤلف من دراسة على المديرين (2004-2007): في 16% من حالات القرار الهامة، لم يكن المديرون يعرفون مسبقاً أي المعلومات سيحتاجونها — إذ كشفت الحاجة عن نفسها خلال عملية صنع القرار.</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>بيانات بحثية</span> — دراسة الاحتياجات المعلوماتية (204 مدير)</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:var(--accent)"><div class="lbl">نتيجتان متوازيتان</div><h3>الاحتياجات المعروفة vs الاحتياجات المفاجئة</h3></div>
+      <div class="g2">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:10px;">معلومات مُعرَّفة مسبقاً (المديرون يعرفون أنهم يحتاجونها)</div>
+          <table class="tbl">
+            <tbody>
+              <tr><td>معلومات السوق والعملاء والفرص</td><td style="color:var(--accent);font-weight:700">31%</td></tr>
+              <tr><td>معلومات المنافسين ونواياهم</td><td style="color:var(--accent);font-weight:700">18%</td></tr>
+              <tr><td>معلومات داخلية (مالية، طاقة، مخزون)</td><td style="color:var(--accent);font-weight:700">17%</td></tr>
+              <tr><td>معلومات قانونية وتنظيمية</td><td style="color:var(--accent);font-weight:700">16%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:10px;">معلومات مفاجئة (ظهرت خلال القرار، لم تُخطَّط)</div>
+          <table class="tbl">
+            <tbody>
+              <tr><td>لم تحدث حالات مفاجئة</td><td style="color:var(--gold);font-weight:700">38%</td></tr>
+              <tr><td>نعم (دون تحديد نوع)</td><td style="color:var(--gold);font-weight:700">20%</td></tr>
+              <tr><td>معلومات السوق</td><td style="color:var(--gold);font-weight:700">10%</td></tr>
+              <tr><td>معلومات داخلية</td><td style="color:var(--gold);font-weight:700">7%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="box" style="margin-top:14px;">
+        💡 <strong>الدلالة العملية:</strong> ذكاء الأعمال يجب أن يكون مرناً بما يكفي لخدمة الاحتياجات المعروفة بكفاءة، وفي الوقت ذاته يُوفّر أدوات مرنة للاحتياجات غير المتوقعة. لا يكفي نظام مُصمَّم فقط لإجابة الأسئلة المعروفة.
+      </div>
+    </div>
+  </div>
+
+  
+<div class="example-block">
+  <div class="example-header">
+    <span class="et">💡 تصنيف الاحتياجات — وكالة سفر</span>
+    <span class="example-badge">مثال واقعي</span>
+  </div>
+  <div class="example-body"><strong>وكالة سفر تحتاج معلومات متنوعة:</strong><br>
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin:10px 0;">
+<tr style="background:rgba(0,196,228,.08)"><td style="padding:7px 10px;border:1px solid rgba(255,255,255,.07);color:var(--accent);font-weight:700">نوع الاحتياج</td><td style="padding:7px 10px;border:1px solid rgba(255,255,255,.07);color:var(--accent);font-weight:700">المثال</td><td style="padding:7px 10px;border:1px solid rgba(255,255,255,.07);color:var(--accent);font-weight:700">الأداة</td></tr>
+<tr><td style="padding:7px 10px;border:1px solid rgba(255,255,255,.05);color:var(--green)">بسيط + متكرر</td><td style="padding:7px 10px;border:1px solid rgba(255,255,255,.05);color:var(--soft)">عدد حجوزات اليوم</td><td style="padding:7px 10px;border:1px solid rgba(255,255,255,.05);color:var(--muted)">تقرير تلقائي صباحي</td></tr>
+<tr><td style="padding:7px 10px;border:1px solid rgba(255,255,255,.05);color:var(--gold)">شائع + معقد</td><td style="padding:7px 10px;border:1px solid rgba(255,255,255,.05);color:var(--soft)">أي الوجهات تتراجع ولماذا؟</td><td style="padding:7px 10px;border:1px solid rgba(255,255,255,.05);color:var(--muted)">تحليل شهري + مقارنة</td></tr>
+<tr><td style="padding:7px 10px;border:1px solid rgba(255,255,255,.05);color:var(--purple)">خاص + فريد</td><td style="padding:7px 10px;border:1px solid rgba(255,255,255,.05);color:var(--soft)">هل نتوسع لخدمة الشركات؟</td><td style="padding:7px 10px;border:1px solid rgba(255,255,255,.05);color:var(--muted)">دراسة جدوى + حكم بشري</td></tr>
+</table></div>
+</div>
+<h3 class="sec" id="ch3-cycle">دورة ذكاء الأعمال — المراحل الست</h3>
+  <p class="pr">يعرض الفصل نماذج متعددة لدورة ذكاء الأعمال من Herring وMeyer وChoo وVuori، ويقارن بينها. النموذج المعتمد في الكتاب هو نموذج Vuori (2006) لاحتوائه على مرحلة التغذية الراجعة الصريحة.</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>إنفوجرافيك</span> — دورة ذكاء الأعمال الست المراحل (Vuori 2006)</div>
+    <div class="ig-body">
+      <div class="steps">
+        <div class="step"><div class="step-c" style="background:#00c4e4">١</div><div class="step-lbl"><strong>تعريف</strong><br>الاحتياج</div></div>
+        <div class="step"><div class="step-c" style="background:#3db8ff">٢</div><div class="step-lbl"><strong>جمع</strong><br>المعلومات</div></div>
+        <div class="step"><div class="step-c" style="background:#8b7dff">٣</div><div class="step-lbl"><strong>معالجة</strong><br>وتنظيم</div></div>
+        <div class="step"><div class="step-c" style="background:#f2b52a">٤</div><div class="step-lbl"><strong>تحليل</strong><br>وصنع المعنى</div></div>
+        <div class="step"><div class="step-c" style="background:#ff6b6b">٥</div><div class="step-lbl"><strong>نشر</strong><br>وإيصال</div></div>
+        <div class="step"><div class="step-c" style="background:#5ed87e">٦</div><div class="step-lbl"><strong>استخدام</strong><br>وتغذية راجعة</div></div>
+      </div>
+      <div class="tiers" style="margin-top:16px;">
+        <div class="tier t1"><div class="tier-h">المرحلة الأولى: تعريف الاحتياج — الأساس المهزوز</div><div class="tier-b">وفقاً لـ Hulnick (2006)، هذه المرحلة نظرياً نقطة الانطلاق، لكن عملياً تعاني من خلل: المستخدمون يفترضون أن النظام سيتكفل بالتنبيه، فيُهملون صياغة احتياجاتهم بوضوح. مديرو المعلومات أحياناً يأخذون المبادرة لاستجلاء هذه الاحتياجات، وأحياناً تُجاهل طلباتهم.</div></div>
+        <div class="tier t2"><div class="tier-h">المرحلة الثانية: جمع المعلومات — مبدأ المحفظة</div><div class="tier-b">يُستخدم "مبدأ المحفظة" لتوزيع موارد الجمع على المصادر المتاحة بأفضل مزيج ممكن. تحذير من Meige وSchmitt (2015): كلما ضاق نطاق الجمع، قلّت احتمالية رصد القضايا الجوهرية المهمة غير المتوقعة.</div></div>
+        <div class="tier t3"><div class="tier-h">المرحلة السادسة: التغذية الراجعة — الحلقة الأهم والأكثر إهمالاً</div><div class="tier-b">هي ما يُحوّل الذكاء من حدث منفرد إلى منظومة تتعلم وتتحسن. بدون التغذية الراجعة، الأخطاء تتكرر، والفرص تُفوَّت مراراً، ولا يتراكم رصيد المؤسسة من الخبرة والدروس.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec">ذكاء الأعمال والأنظمة المرتبطة: ثلاث زوايا للتمييز</h3>
+  <p class="pr">كيف يتمايز ذكاء الأعمال عن ERP وMIS ودعم القرار والذكاء التنافسي؟ يُقدّم الفصل ثلاث زوايا للنظر:</p>
+  <ul class="bl">
+    <li><strong>زاوية الموقع:</strong> أنظمة ERP وMIS تقع في بداية سلسلة القيمة المعلوماتية — تُنتج "مواد خاماً" هي المادة الأولية لذكاء الأعمال.</li>
+    <li><strong>زاوية المستخدم:</strong> ذكاء الأعمال يخدم المحللين وصناع القرار في المستويات الوسطى والعليا حيث الرهانات أعلى — النجاح ثمين والخطأ مُكلف.</li>
+    <li><strong>زاوية الوظيفة:</strong> ERP يُسجّل ما جرى ويُحكم العمليات، أما ذكاء الأعمال فيُجيب على "لماذا؟" و"ماذا سيحدث؟" و"ماذا يجب أن نفعل؟".</li>
+  </ul>
+
+  <div class="box teal">
+    🔍 <strong>الذكاء الداخلي مقابل الخارجي (التنافسي):</strong> يرفض الكتاب الفصل التقليدي بين "ذكاء الأعمال الداخلي" و"الذكاء التنافسي الخارجي" باعتبارهما نشاطين منفصلين. كل مشكلة حقيقية تحتاج كليهما — تفسير انخفاض المبيعات الداخلي يستحيل بدون معرفة ما فعله المنافسون في السوق. الفصل بينهما اصطناعي وضار.
+  </div>
+
+  <h3 class="sec">الدروس من مجالات الاستخبارات الأخرى</h3>
+  <p class="pr">يستلهم الكتاب بجرأة من تجارب الاستخبارات السياسية والعسكرية وتطبيق القانون. هذه المجالات مارست "ذكاء الأعمال" قبل ظهور المصطلح بعقود. درس 11 سبتمبر مثلاً يُبرز خطر صوامع المعلومات بين أجهزة الاستخبارات — وهو بالضبط ما يحدث في الشركات التي تُقسّم معلوماتها قسراً بين الأقسام. الدرس: التنسيق والمشاركة ليسا رفاهية، بل ضرورة وجودية.</p>
+</div>
+
+<hr class="div">
+
+<!-- ══════════════════════════════
+     CHAPTER 4
+══════════════════════════════ -->
+<div class="chapter" id="ch4">
+  <div class="ch-head">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#f2b52a,#8a5800)">
+      <div class="ch-n">٤</div><div class="ch-lab">CH 4</div>
+    </div>
+    <div class="ch-info">
+      <div class="ch-tag">الفصل الرابع</div>
+      <div class="ch-title">أبعاد ذكاء الأعمال</div>
+      <div class="ch-sub">لكل شركة بصمة معلوماتية فريدة — لا يوجد نظام ذكاء واحد يناسب الجميع</div>
+    </div>
+  </div>
+
+  <p class="pr">الفصل الأوسع في الكتاب والأكثر عملية. يُجيب على سؤال محوري: كيف تُصمّم نظام ذكاء أعمال يُلائم شركتك تحديداً، لا شركة أخرى؟ الجواب في فهم بُعدين متشابكين: أبعاد الأعمال التي تُعرّف هوية الشركة، وأبعاد ذكاء الأعمال التي تُحدّد تصميم النظام المثالي لها.</p>
+<div class="analogy"><div class="analogy-hd">🔄 تشبيه يُقرّب الفكرة</div><div class="analogy-body"><strong>ذكاء الأعمال كملابس مخصّصة:</strong><br>الملابس الجاهزة رخيصة لكنها لا تُناسب الجميع. ذكاء الأعمال الجيد مثل الخياطة على المقاس — يُصمَّم بناءً على طبيعة شركتك تحديداً: حجمها، سرعتها، وصناعتها. شركة ناشئة تقنية لا تحتاج نفس النظام الذي تحتاجه شركة نفط عملاقة.</div></div>
+
+
+  <h3 class="sec">أبعاد الأعمال الاثنا عشر — "بصمة الشركة"</h3>
+  <p class="pr">يُقدّم المؤلف اثني عشر بُعداً تُعرّف هوية أي شركة وتُميّزها عن غيرها. هذه الأبعاد هي المرجعية التي ينبغي الانطلاق منها في تصميم أي منظومة ذكاء.</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>إنفوجرافيك</span> — الأبعاد الاثنا عشر لهوية الشركة</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:var(--gold)"><div class="lbl">أبعاد الأعمال</div><h3>بصمة كل شركة الفريدة</h3><p>العوامل التي تُحدد هوية شركتك وتشكّل احتياجاتها المعلوماتية</p></div>
+      <div class="g3">
+        <div class="mc" style="--c:#00c4e4"><div class="mc-icon">🏭</div><div class="mc-title">طبيعة الصناعة وثقافتها</div><div class="mc-desc">هل الصناعة تقليدية أم رقمية؟ محافظة أم سريعة التغيّر؟ تُحدد سياق كل قرار.</div><span class="mc-tag">بيئة خارجية</span></div>
+        <div class="mc" style="--c:#f2b52a"><div class="mc-icon">⚔️</div><div class="mc-title">حدة المنافسة</div><div class="mc-desc">كم المنافسون؟ هل الدخول للسوق سهل؟ تُحدد إلحاحية الذكاء التنافسي.</div><span class="mc-tag">بيئة خارجية</span></div>
+        <div class="mc" style="--c:#8b7dff"><div class="mc-icon">🏢</div><div class="mc-title">الهيكل التنظيمي والحجم</div><div class="mc-desc">محلية صغيرة أم متعددة الجنسيات؟ عدد الطبقات الإدارية يؤثر على توزيع الذكاء.</div><span class="mc-tag">هيكل داخلي</span></div>
+        <div class="mc" style="--c:#ff6b6b"><div class="mc-icon">🎂</div><div class="mc-title">عمر الشركة وتاريخها</div><div class="mc-desc">الشركة العريقة تمتلك بيانات تاريخية أغزر، لكنها قد تُعاني من الجمود وصعوبة التكيّف.</div><span class="mc-tag">هيكل داخلي</span></div>
+        <div class="mc" style="--c:#5ed87e"><div class="mc-icon">💰</div><div class="mc-title">القوة والمتانة المالية</div><div class="mc-desc">الوضع المالي يُحدد القدرة على الاستثمار في البنية التحتية لذكاء الأعمال.</div><span class="mc-tag">أداء داخلي</span></div>
+        <div class="mc" style="--c:#2adbbc"><div class="mc-icon">👥</div><div class="mc-title">جودة الكفاءات البشرية</div><div class="mc-desc">حتى أفضل الأنظمة تفشل بدون فريق يمتلك الكفاءات التحليلية والمعلوماتية المطلوبة.</div><span class="mc-tag">أداء داخلي</span></div>
+        <div class="mc" style="--c:#3db8ff"><div class="mc-icon">🤝</div><div class="mc-title">علاقات العملاء وعمقها</div><div class="mc-desc">علاقات متينة = بيانات أغنى وأصدق = ذكاء أعمق وأكثر موثوقية.</div><span class="mc-tag">علاقات خارجية</span></div>
+        <div class="mc" style="--c:#f2b52a"><div class="mc-icon">💡</div><div class="mc-title">درجة الابتكارية</div><div class="mc-desc">الشركة الرائدة تحتاج ذكاءً استشرافياً للكشف عن الفرص. التابعة تحتاج ذكاءً رقابياً.</div><span class="mc-tag">استراتيجية</span></div>
+        <div class="mc" style="--c:#8b7dff"><div class="mc-icon">📦</div><div class="mc-title">تعقيد المنتجات والخدمات</div><div class="mc-desc">مدى تنوع المنتجات وتشعّب سلسلة التوريد يُحدد مدى تعقيد البيانات المطلوبة.</div><span class="mc-tag">عمليات</span></div>
+        <div class="mc" style="--c:#ff6b6b"><div class="mc-icon">🌍</div><div class="mc-title">الحضور الجغرافي</div><div class="mc-desc">نشاط محلي أم عالمي؟ التعدد الجغرافي يُعقّد متطلبات التكامل والمعايير الموحّدة.</div><span class="mc-tag">بيئة خارجية</span></div>
+        <div class="mc" style="--c:#5ed87e"><div class="mc-icon">🔭</div><div class="mc-title">التوجّه: داخلي أم خارجي؟</div><div class="mc-desc">هل الطاقة تتركز على تحسين الكفاءة الداخلية أم على رصد الفرص والتهديدات الخارجية؟</div><span class="mc-tag">استراتيجية</span></div>
+        <div class="mc" style="--c:#f2b52a"><div class="mc-icon">⚡</div><div class="mc-title">سرعة الأعمال (Clock Speed)</div><div class="mc-desc">البُعد الأهم لتصميم الذكاء — ما وتيرة التغير في أسعارك، منتجاتك، طلبات عملائك؟</div><span class="mc-tag">ديناميكية</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec">سرعة الأعمال — البُعد الأكثر تأثيراً</h3>
+  <p class="pr">من بين الأبعاد الاثني عشر، يحتل بُعد <strong>سرعة الأعمال (Clock Speed)</strong> مكانة خاصة في تحديد تصميم ذكاء الأعمال. كم مرة تتغير أسعارك؟ كم مرة تُطلق منتجات جديدة؟ كم مرة تتبدّل توقعات عملائك؟ إيقاع أعمالك يُحدد إيقاع ذكائها.</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>إنفوجرافيك</span> — طيف سرعة الأعمال وأنواع الذكاء المطلوبة</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:var(--gold)"><div class="lbl">Clock Speed</div><h3>ليست كل الشركات تعيش على نفس الإيقاع</h3></div>
+      <div class="spec"></div>
+      <div class="spec-ends">
+        <span style="color:var(--accent)">⚡ الثوانٍ — تداول مالي فوري</span>
+        <span style="color:var(--green)">الأيام — تجزئة، لوجستيات</span>
+        <span style="color:var(--gold)">🐢 الأشهر والسنوات — بناء، تعدين</span>
+      </div>
+      <div class="g2">
+        <div style="background:rgba(0,196,228,.07);border:1px solid rgba(0,196,228,.18);border-radius:var(--r);padding:18px 15px;">
+          <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:11px;">⚡ قطاعات سريعة الإيقاع</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>البورصة والتداول الآلي — كل ثانية تُحسب</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>التسعير الديناميكي للطيران — يتغير مع كل حجز</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>كشف الاحتيال المالي — يجب أن يكون لحظياً</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>إدارة مخزون سلاسل التجزئة الكبرى</div>
+          <div style="margin-top:12px;background:rgba(0,196,228,.1);border-radius:8px;padding:8px 11px;font-size:12px;color:var(--accent);">✅ تحتاج: ذكاء فوري (Real-time BI)</div>
+        </div>
+        <div style="background:rgba(242,181,42,.07);border:1px solid rgba(242,181,42,.18);border-radius:var(--r);padding:18px 15px;">
+          <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:11px;">🐢 قطاعات بطيئة الإيقاع</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>صناعة البناء والمقاولات — دورات تعاقدية طويلة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>المؤسسات الحكومية والتشريعية</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>التعليم العالي — تقييم فصلي أو سنوي كافٍ</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>صناعة التعدين — دورة إنتاجية طويلة المدى</div>
+          <div style="margin-top:12px;background:rgba(242,181,42,.1);border-radius:8px;padding:8px 11px;font-size:12px;color:var(--gold);">✅ تحتاج: ذكاء في الوقت المناسب (Right-time)</div>
+        </div>
+      </div>
+      <div class="box red" style="margin-top:14px;">⚠️ <strong>الفخ الشائع:</strong> الاستثمار في ذكاء فوري (Real-time) لشركة بناء هو إهدار فاضح للموارد. والاكتفاء بتقارير شهرية في شركة تداول مالي هو انتحار تنافسي. المطابقة الدقيقة لإيقاع أعمالك هي الفن الحقيقي في تصميم ذكاء الأعمال.</div>
+    </div>
+  </div>
+
+  <h3 class="sec" id="ch4-7dim">أبعاد ذكاء الأعمال السبعة — نقطة الموازنة</h3>
+
+<div class="example-block">
+  <div class="example-header">
+    <span class="et">💡 المحاور السبعة — مثال عملي</span>
+    <span class="example-badge">مثال واقعي</span>
+  </div>
+  <div class="example-body"><strong>شركة تأمين صحي تُصمّم نظام ذكاء أعمالها:</strong><br><br>
+1️⃣ <strong>التركيز — داخلي وخارجي:</strong> تراقب مطالبات العملاء (داخلي) + أسعار المنافسين (خارجي) معاً<br>
+2️⃣ <strong>الهيكل — هجين:</strong> مستودع بيانات مركزي + لوحات محلية لكل منطقة<br>
+3️⃣ <strong>التعقيد — متدرّج:</strong> تقارير يومية بسيطة + تحليل اكتواري معقد سنوياً<br>
+4️⃣ <strong>النطاق — شامل:</strong> تربط المبيعات بالمطالبات بخدمة العملاء لرؤية موحّدة<br>
+5️⃣ <strong>الأتمتة — مختلطة:</strong> التنبيهات آلية، الحكم على الحالات الاستثنائية بشري<br>
+6️⃣ <strong>المبادرة — مزدوجة:</strong> تنبيه تلقائي لارتفاع المطالبات + تحليل يدوي للأسباب<br>
+7️⃣ <strong>السرعة — أسبوعية:</strong> تقارير إدارية أسبوعية تتناسب مع إيقاع القرارات<br><br>
+<em>لكل شركة مزيجها الخاص — لا يوجد حل موحّد للجميع.</em></div>
+</div>
+
+  <p class="pr">ترسم هذه الأبعاد السبعة خريطة الخيارات الرئيسية في تصميم ذكاء الأعمال. كل بُعد هو محور يمتد بين قطبين، والموقع الأمثل للشركة عليه يُحدده سياقها الفريد.</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>إنفوجرافيك</span> — المحاور السبعة لتصميم نظام ذكاء الأعمال</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:var(--purple)"><div class="lbl">أبعاد ذكاء الأعمال</div><h3>سبعة محاور تُحدّد شكل نظامك</h3><p>كل شركة تختار موقعها على كل محور بناءً على طبيعتها ومتطلباتها</p></div>
+      <table class="tbl">
+        <thead><tr><th>البُعد</th><th>القطب الأول</th><th>القطب الثاني</th><th>الدرس المحوري</th></tr></thead>
+        <tbody>
+          <tr><td><strong>١ — التركيز</strong></td><td>داخلي (الكفاءة)</td><td>خارجي (السوق)</td><td>الفصل بينهما وهم — كل مشكلة حقيقية تحتاجهما معاً</td></tr>
+          <tr><td><strong>٢ — الهيكل</strong></td><td>مركزي موحد</td><td>موزع عبر الأقسام</td><td>النموذج الهجين يجمع اتساق المركزي ومرونة الموزع</td></tr>
+          <tr><td><strong>٣ — التعقيد</strong></td><td>أسئلة روتينية</td><td>أسئلة استراتيجية</td><td>كل نوع يحتاج منهجاً وأدوات مختلفة كلياً</td></tr>
+          <tr><td><strong>٤ — النطاق</strong></td><td>ضيق (وظيفة واحدة)</td><td>شامل (كل الشركة)</td><td>الشامل يكشف التناقضات الخطيرة المختبئة في الصوامع</td></tr>
+          <tr><td><strong>٥ — الأتمتة</strong></td><td>يدوي بشري</td><td>آلي كامل</td><td>الأتمتة تُحرّر الإنسان للتحليل العميق — ليس لتحلّ محله</td></tr>
+          <tr><td><strong>٦ — المبادرة</strong></td><td>النظام يدفع التنبيهات</td><td>المستخدم يسحب المعلومة</td><td>المزيج: دفع للمراقبة، سحب للتحليل والاستكشاف</td></tr>
+          <tr><td><strong>٧ — السرعة</strong></td><td>فوري لحظي</td><td>في الوقت المناسب</td><td>طابق سرعة أعمالك — لا أسرع ولا أبطأ</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h4 class="sub">البُعد الخامس بالتفصيل: الأتمتة — المنطقة الرمادية</h4>
+  <p class="pr">يُعالج هذا البُعد سؤالاً جوهرياً: ما الذي يجب أن يفعله الكمبيوتر وحده؟ وما الذي يبقى حكراً على الإنسان؟</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>تحليل</span> — طيف الأتمتة في ذكاء الأعمال</div>
+    <div class="ig-body">
+      <div class="g3">
+        <div style="background:rgba(94,216,126,.06);border:1px solid rgba(94,216,126,.18);border-radius:var(--r);padding:16px 13px;">
+          <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:10px;">🤖 قابل للأتمتة الكاملة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>استعلامات قواعد البيانات</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>البحث على الإنترنت وتصفيته</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>ترتيب وتصنيف وتجميع البيانات</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>التقارير الدورية المنتظمة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>التنبيهات عند تجاوز الحدود المحددة</div>
+        </div>
+        <div style="background:rgba(242,181,42,.06);border:1px solid rgba(242,181,42,.18);border-radius:var(--r);padding:16px 13px;">
+          <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:10px;">🤝 المنطقة الرمادية (تعاون)</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>دمج البيانات من مصادر متعددة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>نمذجة السيناريوهات المعقدة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>تحليل النصوص وتفسير المشاعر</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>بناء قواعد الأعمال وتحديثها</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>نماذج "ماذا لو؟" التفاعلية</div>
+        </div>
+        <div style="background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.18);border-radius:var(--r);padding:16px 13px;">
+          <div style="font-size:13px;font-weight:700;color:var(--red);margin-bottom:10px;">🧠 حكر على الإنسان</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>استيعاب المعنى وربطه بالسياق</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>تشخيص الأسباب الجذرية الحقيقية</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>ابتكار البدائل والحلول الجديدة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>الحكم على المفاضلات الأخلاقية</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>بناء الثقة بين الأشخاص والأنظمة</div>
+        </div>
+      </div>
+      <div class="box red" style="margin-top:14px;">⚠️ <strong>خطر الأتمتة الزائدة:</strong> نظام يُنتج إجابات دقيقة تقنياً لكن مجرّدة من السياق قد يكون مُضلِّلاً. مثال حقيقي: "حصتنا السوقية 16.7%" — رقم دقيق، لكن دون معرفة ما إذا كان هذا صعوداً أم هبوطاً، وما فعله المنافسون، وما الموسمية — يظل رقماً أعمى. الإنسان هو من يُضيف السياق والمعنى الذي يجعل الرقم قابلاً للتصرف.</div>
+    </div>
+  </div>
+
+  <h3 class="sec" id="ch4-tier">النهج الطبقي — الحل الذكي</h3>
+  <p class="pr">كيف تُصمم نظاماً يُغطّي كل هذه الأبعاد المتنوعة دون أن يُصبح ضخماً لدرجة لا يستخدمه أحد؟ الجواب في <strong>النهج الطبقي</strong>: لا تبني نظاماً واحداً يفعل كل شيء بنفس الأداة، بل صمّم بيئة ذكاء متدرّجة الأعماق.</p>
+  <p class="pr">تُدعم هذه الفكرة بنتيجة بحثية لافتة: دراسة مقارنة بين مديرين من ليتوانيا والولايات المتحدة كشفت أن أكثر أساليب التحليل استخداماً في الواقع هو التصفّح والاستعراض السريع (Browsing/Scanning) أولاً، ثم تحليل "ماذا لو؟"، ثم التجميع والترتيب. أما الأساليب الإحصائية المتقدمة فتأتي في نهاية القائمة — وهو عكس ما يُفترض في أدبيات تقنيات ذكاء الأعمال!</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>إنفوجرافيك</span> — النهج الطبقي في بيئة ذكاء الأعمال</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:var(--gold)"><div class="lbl">التصميم الذكي</div><h3>بيئة ذكاء الأعمال الطبقية</h3><p>لا تحتاج كل الأسئلة نفس مستوى العمق من الأدوات</p></div>
+      <div class="tiers">
+        <div class="tier t1">
+          <div class="tier-h">🖥️ الطبقة الأولى — الأدوات اليومية القريبة (دائماً في متناول اليد)</div>
+          <div class="tier-b">لوحات متابعة KPIs، تقارير المبيعات والمخزون اليومية، البحث البسيط في المصادر الثابتة، التنبيهات التلقائية عند تجاوز الحدود، ملخصات الأداء الأسبوعي والشهري. المدير يعمل مع هذه الطبقة يومياً دون تفكير.</div>
+        </div>
+        <div class="tier t2">
+          <div class="tier-h">📊 الطبقة الثانية — أدوات التحليل المتعمّق (عند الحاجة)</div>
+          <div class="tier-b">تحليل OLAP متعدد الأبعاد، التعمّق في التفاصيل (Drill-down)، التنقيب في البيانات لاكتشاف الأنماط، نماذج التنبؤ والسيناريوهات، التحليل الإحصائي للعلاقات، اختبار الفرضيات. تُستخدم للقرارات المهمة التي تستحق وقتاً إضافياً.</div>
+        </div>
+        <div class="tier t3">
+          <div class="tier-h">🔬 طبقات إضافية متخصصة (للحالات الاستثنائية)</div>
+          <div class="tier-b">نماذج ذكاء اصطناعي ضخمة، معالجة تحليلية فائقة السرعة، تقنيات سحابية متخصصة، استشارات تحليلية خارجية متخصصة. تُستأجر أو تُنشَّط فقط حين يكون المردود يبرر التكلفة الإضافية.</div>
+        </div>
+      </div>
+      <div class="box gold" style="margin-top:16px;">
+        🔧 <strong>تشبيه من الحياة:</strong> الطبقة الأولى كالأدوات المنزلية في الدرج — مفك، مطرقة، شريط قياس. الطبقة الثانية كالعدة الكهربائية في المخزن — تحضرها لمشروع محدد. الطبقات الأعمق كالآلات الصناعية — تستأجرها حين تحتاجها فعلاً. لا أحد يشتري آلة تصنيع لتسمير مسمار في الجدار!
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec">ما تقوله أبحاث المديرين: مؤشرات الأعمال اليومية</h3>
+  <p class="pr">في دراسة ميدانية شملت 203 مديراً، سُئلوا عن المؤشرات التي يُراقبونها بشكل مستمر. الأكثر مراقبة يومياً كانت: المبيعات والطلبات، الحسابات الجارية، معلومات السوق والمنافسين، العملاء. هذا يُؤكد أن الطبقة الأولى من الذكاء — الأدوات اليومية — ليست "ساذجة"، بل هي لبّ الممارسة الذكية اليومية.</p>
+</div>
+
+<!-- CHAPTERS 5-8 -->
+
+<hr class="div">
+
+<!-- ══════════════════════════════
+     CHAPTER 5
+══════════════════════════════ -->
+<div class="chapter" id="ch5">
+  <div class="ch-head">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#5ed87e,#1a5c30)">
+      <div class="ch-n">٥</div><div class="ch-lab">CH 5</div>
+    </div>
+    <div class="ch-info">
+      <div class="ch-tag">الفصل الخامس</div>
+      <div class="ch-title">تكامل المعلومات</div>
+      <div class="ch-sub">لماذا الصورة الكاملة دائماً أكثر من مجموع الأجزاء؟</div>
+    </div>
+  </div>
+
+  <p class="pr">معضلة واسعة الانتشار: الشركات التي تمتلك أفضل الأدوات وأذكى الموظفين لا تُنتج الصورة الكاملة التي تحتاجها. Huret (2018) يلخّص الواقع بصراحة: "معظم المؤسسات التي تستخدم أدوات ذكاء أعمال متقدمة وتُوظّف موظفين أذكياء لا تُنتج الصورة الكاملة التي تحتاجها — النتيجة أقرب إلى تفسير جزئي لصورة ناقصة."</p>
+<div class="ba"><div class="ba-s ba-before"><div class="ba-lbl">❌ بدون تكامل</div><div class="ba-text">مدير التسويق يقول المبيعات جيدة. مدير خدمة العملاء يقول الشكاوى ترتفع. مدير المخزون يقول المنتج ينفد. الثلاثة لا يتحدثون — لا صورة حقيقية.</div></div><div class="ba-s ba-after"><div class="ba-lbl">✅ مع تكامل</div><div class="ba-text">النظام يجمع الثلاثة: 'نبيع بسرعة لكن التوصيل يتأخر فيغضب العملاء والمخزون ينفد.' القرار: حلّ التوصيل والمخزون معاً.</div></div></div>
+
+  <p class="pr">السبب الجوهري: <strong>البيانات مُبعثرة في صوامع وظيفية</strong> بُنيت في أوقات مختلفة لأغراض مختلفة وباستخدام معايير مختلفة، وجمعها في لوحة واحدة متسقة يُمثّل تحدياً تقنياً وبشرياً وتنظيمياً في آنٍ واحد.</p>
+
+  <div class="box">
+    ⚠️ <strong>تنبيه أكاديمي مهم:</strong> على مدار العقد الأول من الألفية الثالثة، انتشرت موجة مصطلحات التكامل المؤسسي (EII, EAI, Enterprise Portals). لكن هذه المشاريع ركّزت على التقنية وتجاهلت السؤال الأهم: ما القيمة التي سيُضيفها هذا التكامل للمستخدم النهائي؟ الفكرة "كلما كانت لديك بيانات أكثر كان ذلك أفضل" تحوّلت إلى "كلما كانت بياناتك أكثر تكاملاً كان ذلك أفضل" — لكن نقطة البداية الصحيحة لا تزال غائبة: ما السؤال الذي يحتاج إجابة؟
+  </div>
+
+  <h3 class="sec">قيمة التكامل: ماذا يُضيف؟</h3>
+  <p class="pr">التكامل الجيد للمعلومات يُحقق بُعدَين قيميَّين مترابطَين:</p>
+  <ul class="bl">
+    <li><strong>صورة أوسع وأشمل:</strong> واجهة موحّدة لمصادر متعددة، إمكانية رؤية الصورة الكاملة بسدّ الفجوات، سرعة أكبر وثقة أعلى في الذكاء القابل للتطبيق بفضل جودة التكامل.</li>
+    <li><strong>فهم أعمق:</strong> اكتشاف التبعيات المخفية والقواعد غير الظاهرة، تفسيرات أعمق وتوضيح للأسباب لا تتاح إلا من خلال تكامل المصادر المتباينة.</li>
+  </ul>
+
+  <h3 class="sec">مستويات تعقيد التكامل الثلاثة</h3>
+
+  <div class="ig">
+    <div class="ig-bar"><span>إطار تحليلي</span> — سلّم تعقيد التكامل</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:var(--green)"><div class="lbl">الفصل الخامس</div><h3>ثلاثة مستويات من بسيط إلى معقد</h3><p>كل مستوى يُتيح فهماً أعمق لكنه يتطلب جهداً أكبر</p></div>
+      <div class="tiers">
+        <div class="tier t3">
+          <div class="tier-h">🔧 المستوى الأول: التكامل البسيط (Simple Integration)</div>
+          <div class="tier-b">يدمج بيانات منظّمة بقواعد واضحة من مجال قواعد البيانات. البيانات تحمل معنى ذرياً (أتومياً) معروفاً مسبقاً. المشكلات الرئيسية: جودة البيانات، توحيد الترميز والمعاييير. مثال: جمع كل بيانات عميل معيّن من أنظمة مختلفة في سجل واحد.</div>
+        </div>
+        <div class="tier t2">
+          <div class="tier-h">🧩 المستوى الثاني: التكامل متوسط التعقيد</div>
+          <div class="tier-b">يدمج معلومات منظمة وغير منظمة من خلال مقاطع من المعنى يجب استخراجها (وظيفة تقنية) ثم ربطها بالمعلومات الأخرى (وظيفة مشتركة بين التقنية والإنسان). التعليق التوضيحي والوسم (Tagging) من أكثر الأدوات شيوعاً. مثال: تحليل أنماط استفسارات العملاء وتصنيفها.</div>
+        </div>
+        <div class="tier t1">
+          <div class="tier-h">🧠 المستوى الثالث: التكامل المعقد (قائم على بناء المعنى)</div>
+          <div class="tier-b">يدمج معلومات على أساس صنع المعنى (Sense-making). مدعوم بالمستويين السابقين، لكنه ينطلق من المعاني المعقدة المُستخلصة من مصادر متنوعة لتطوير الرؤى أو الإجابة على أسئلة صعبة. مثال: تقييم استراتيجية منافس محتمل أو رصد اقتراب أزمة سوقية كبيرة. هذا المستوى يتجاوز قدرات التقنية وحدها.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec" id="ch5-sst">مصدر الحقيقة الواحد (SST — Single Source of Truth)</h3>
+  <p class="pr">أحد أهم المفاهيم في تكامل المعلومات، وغالباً محرّك رئيسي لإطلاق مشروع ذكاء أعمال كامل. تعريفان دقيقان يُميّز بينهما المؤلف:</p>
+  <ul class="bl gold">
+    <li><strong>Single Source of Truth (مصدر الحقيقة الواحد):</strong> مبدأ تخزين — كل قطعة بيانات محددة توجد في مكان واحد فقط، وكل الاستخدامات الأخرى تُشير إليها بالإحالة لا بالنسخ.</li>
+    <li><strong>Single Version of Truth (نسخة الحقيقة الواحدة):</strong> مبدأ تعريفي — وجهة النظر الموحّدة للبيانات التي يتفق عليها الجميع باعتبارها التعريف الموثوق. وهو أصعب تحقيقاً لأنه يحتاج اتفاقاً إنسانياً على المعاني.</li>
+  </ul>
+  <div class="box teal">
+    🌐 <strong>مشكلة المصطلحات الغامضة:</strong> كلمة "عميل" تعني شيئاً في قسم المبيعات وشيئاً آخر في القسم المالي وشيئاً ثالثاً في خدمة العملاء. كلمة "مشروع" تُعرَّف بشكل مختلف في كل قسم. هذا الغموض الدلالي هو عدو التكامل الحقيقي — وحلّه يبدأ بجلوس الناس معاً وتوحيد التعريفات قبل لمس أي برنامج.
+  </div>
+
+  <h3 class="sec">كسر الأسطورة: ليست 80% من بيانات الشركات غير منظمة</h3>
+  <p class="pr">يتحدى الكتاب صراحةً الرقم المتداول على نطاق واسع في مجال تحليلات البيانات: "80% من بيانات الشركات غير منظمة". يُثبت المؤلف أن هذا الرقم <strong>لم يُثبته أي بحث موثوق</strong> وتتناقله المصادر دون مصدر أصيل. الأبحاث الفعلية (TDWI) تُشير إلى: 47% بيانات منظمة، 22% شبه منظمة، 31% غير منظمة — وهو فرق جوهري يؤثر على تخطيط مشاريع التكامل.</p>
+
+  
+<div class="example-block">
+  <div class="example-header">
+    <span class="et">💡 مشكلة SST — ما تعنيه كلمة 'عميل'؟</span>
+    <span class="example-badge">مثال واقعي</span>
+  </div>
+  <div class="example-body"><strong>بنك يريد بناء نظام خدمة عملاء موحّد.</strong> المشكلة: كلمة "عميل" تعني شيئاً مختلفاً في كل قسم!<br><br>
+📋 قسم القروض: "عميل" = من لديه قرض نشط<br>
+💳 قسم البطاقات: "عميل" = من لديه بطاقة ائتمان<br>
+🏦 قسم الودائع: "عميل" = من لديه حساب توفير<br>
+📞 مركز الاتصال: "عميل" = أي شخص اتصل في آخر 6 أشهر<br><br>
+<strong>النتيجة:</strong> نفس الشخص يظهر في 4 أنظمة كأربعة "عملاء" مختلفين. لا أحد يرى الصورة الكاملة له.<br><br>
+<strong>الحل (SST):</strong> تعريف موحّد واحد = رقم الهوية الوطنية. كل الأنظمة تُشير إليه. صورة موحّدة وموثوقة.</div>
+</div>
+<h3 class="sec" id="ch5-sense">التكامل وصنع المعنى — الهدف الأسمى</h3>
+  <p class="pr">التكامل الحقيقي ليس تقنياً بحتاً — إنه في جوهره صنع المعنى. Pirolli وCard (2005) يُعرّفان تكامل المعلومات بأنه "عملية متعددة المراحل تحتوي على حلقات متكررة في كل خطوة، ذات طابع انتهازي". كلما زاد تعقيد المشكلة، انتقل التكامل من مجال دمج البيانات إلى مجال بناء المعنى — وهو مجال بشري بامتياز.</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>بيانات بحثية</span> — تحليل "سلة المعلومات" — ما الذي يُراقَب معاً؟</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:var(--teal)"><div class="lbl">نتيجة من دراسة المؤلف (203 مشارك)</div><h3>أكثر الأزواج شيوعاً في المراقبة المستمرة</h3></div>
+      <div class="g2">
+        <div>
+          <div style="font-size:12.5px;font-weight:700;color:var(--teal);margin-bottom:10px;">الأزواج الأكثر مراقبة معاً</div>
+          <table class="tbl">
+            <thead><tr><th>مجموعة أولى</th><th>مجموعة ثانية</th><th>التكرار</th></tr></thead>
+            <tbody>
+              <tr><td>السوق والمنافسة</td><td>المالية والمحاسبة</td><td>16</td></tr>
+              <tr><td>السوق والمنافسة</td><td>المبيعات والإيرادات</td><td>8</td></tr>
+              <tr><td>المالية والمحاسبة</td><td>المبيعات والإيرادات</td><td>7</td></tr>
+              <tr><td>المبيعات والإيرادات</td><td>العملاء</td><td>5</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div style="font-size:12.5px;font-weight:700;color:var(--teal);margin-bottom:10px;">الثلاثيات الأكثر مراقبة معاً</div>
+          <table class="tbl">
+            <thead><tr><th>المجموعة الثلاثية</th><th>التكرار</th></tr></thead>
+            <tbody>
+              <tr><td>السوق + المالية + العملاء</td><td>10</td></tr>
+              <tr><td>المالية + المبيعات + الموردون</td><td>7</td></tr>
+              <tr><td>المالية + العملاء + اللوائح القانونية</td><td>5</td></tr>
+              <tr><td>السوق + المالية + المبيعات</td><td>5</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="box" style="margin-top:14px;">💡 <strong>الدلالة:</strong> يُمكن الاستعانة بهذه الأنماط في تصميم لوحات المتابعة — ما المعلومات التي تُكمّل بعضها؟ فصوامع المعلومات لا تعكس الطريقة التي يُراقب بها المديرون الأداء فعلياً.</div>
+    </div>
+  </div>
+
+  <h3 class="sec">أدوات التكامل التقني — نظرة عامة</h3>
+  <p class="pr">يستعرض الفصل عدة مقاربات تقنية للتكامل، من الأقل إلى الأكثر مرونة:</p>
+  <ul class="bl">
+    <li><strong>مستودع البيانات (Data Warehouse):</strong> تحميل البيانات من مصادرها في قاعدة مركزية موحّدة بعد تحويلها وتنظيفها. قوي ومتسق لكن صلب وبطيء الاستجابة للتغيير.</li>
+    <li><strong>EII وEAI:</strong> ظهرا في مطلع الألفية كحلول للتكامل دون إنشاء مستودع مركزي، لكنهما يُعتبران الآن إلى حدٍّ ما متقادمَين.</li>
+    <li><strong>بحيرات البيانات (Data Lakes):</strong> تخزّن البيانات بصيغتها الأصلية دون تحويل — مرونة عالية لكن تطلب مهارات متخصصة في الاستخلاص والتحليل.</li>
+    <li><strong>لوحات المتابعة (Dashboards):</strong> تُقدّم بيانات من مصادر متعددة معاً في عرض موحّد — تكامل "ناعم" يعتمد على الحكم البشري في استخلاص المعنى من تجاور المؤشرات.</li>
+    <li><strong>أدوات XML والمعيارية:</strong> قواعد موحّدة للوصف والتنسيق تُتيح التكامل عبر الأنظمة المتباينة.</li>
+  </ul>
+
+  <div class="box gold">
+    🎯 <strong>خلاصة الفصل:</strong> التكامل التقني مهم لكنه ليس الغاية — التكامل الحقيقي يهدف إلى صنع المعنى. "الميل الأخير" في سلسلة التكامل يتطلب الحكم البشري: هنا تتحوّل البيانات المدمجة إلى رؤية. العملية تحتوي خطوات لكن الاكتشاف نفسه استكشافي بطبيعته — لا يمكن حبسه في خوارزمية.
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ══════════════════════════════
+     CHAPTER 6
+══════════════════════════════ -->
+<div class="chapter" id="ch6">
+  <div class="ch-head">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#ffb84d,#8a5800)">
+      <div class="ch-n">٦</div><div class="ch-lab">CH 6</div>
+    </div>
+    <div class="ch-info">
+      <div class="ch-tag">الفصل السادس</div>
+      <div class="ch-title">إدارة الخبرة والدروس المستفادة</div>
+      <div class="ch-sub">ذاكرة المؤسسة — كنز مُهمَل أم مقبرة لأثمن الأصول؟</div>
+    </div>
+  </div>
+
+  <p class="pr">من أكثر المحاور إهمالاً في ذكاء الأعمال: الخبرة المتراكمة من الممارسة الفعلية. كل مشكلة عالجناها، وكل فرصة أضعناها، وكل قرار اتخذناه وعرفنا نتيجته — هذا رصيد معرفي هائل يتبخّر مع الوقت إذا لم يُدَر بوعي، وتزداد قيمته الاستثنائية في اللحظات الأكثر إلحاحاً.</p>
+<div class="analogy"><div class="analogy-hd">🔄 تشبيه يُقرّب الفكرة</div><div class="analogy-body"><strong>الشركة كإنسان يتعلم:</strong><br>الشخص الذي يُصاب بحادث مرور ويُدوّن الدروس — الطريق الخطر، الساعة الحرجة، النمط الذي يتكرر — ويُشارك هذه الخبرة مع أبنائه يحوّل ألمه إلى درس يحمي الآخرين. الشركة التي تُوثّق إخفاقاتها ونجاحاتها تفعل الشيء ذاته — تتعلم عبر الأجيال.</div></div>
+
+
+  <p class="pr">Cyert وMarch (1963) يؤكدان أن الشركة التي تتعلم من خبرتها تُطوّر قواعد وروتينات وإجراءات تُعزز رشاقتها وقدرتها على التكيّف مع التغيّر. Likierman (2020) يُضيف أن الخبرة المتراكمة هي مصدر "السياق والموضوعية" في القرارات الكبرى — ما يجعل رأي المخضرم ذا وزن خاص لا تعكسه شهاداته رسمياً.</p>
+
+  <h3 class="sec">تعريف الدروس المستفادة — التمييز الدقيق</h3>
+  <p class="pr">يُميّز الكتاب تمييزاً مهماً بين الخبرة والدروس المستفادة:</p>
+  <ul class="bl gold">
+    <li><strong>الخبرة:</strong> معلومات قيّمة محتملة تم التقاطها وتجميعها وتخزينها وتوزيعها وإمكانية إعادة استخدامها — لكنها "دروس" دون أن تكون "تعلّمت".</li>
+    <li><strong>الدروس المستفادة (LL):</strong> بحسب Secchi وآخرين (1999): "معرفة أو فهم مكتسب من التجربة. التجربة قد تكون إيجابية (نجاح) أو سلبية (فشل). يجب أن يكون الدرس مهماً وصحيحاً وقابلاً للتطبيق."</li>
+  </ul>
+
+  <h3 class="sec">ماذا تحتوي الدروس المستفادة؟ — دراسة من الميدان</h3>
+  <p class="pr">في بحث ميداني أجراه المؤلف بين 2008-2009 على 204 مديراً، سُئلوا عن محتوى خبرتهم المتراكمة في القرارات. أبرز النتائج:</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>بيانات بحثية</span> — محتوى الخبرة المتراكمة لدى المديرين</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:var(--gold2)"><div class="lbl">204 مديراً في الدراسة</div><h3>ماذا يحتفظ المديرون في ذاكرتهم عن القرارات؟</h3></div>
+      <table class="tbl">
+        <thead><tr><th>نوع المعلومة</th><th>عدد الإشارات</th><th>الملاحظة</th></tr></thead>
+        <tbody>
+          <tr><td>أساليب وطرق التعامل مع المشكلة</td><td style="color:var(--gold);font-weight:700">178</td><td>الأعلى — "كيف؟" يُحتفظ به أكثر من "ماذا؟"</td></tr>
+          <tr><td>وصف مختصر للمشكلة</td><td style="color:var(--gold);font-weight:700">150</td><td>سياق المشكلة ضروري للتطبيق المستقبلي</td></tr>
+          <tr><td>حجم المشكلة أو قيمتها</td><td>93</td><td>معيار لتقدير أهمية الدرس</td></tr>
+          <tr><td>وقت ظهور المشكلة والقرار</td><td>91</td><td>السياق الزمني وتأثيره على القرار</td></tr>
+          <tr><td>البدائل التي نوقشت</td><td>88</td><td>الطرق التي لم تُسلَك — دروس في حد ذاتها</td></tr>
+          <tr><td>الوضع السوقي وقت المشكلة</td><td>72</td><td>السياق الخارجي شرط فهم القرار</td></tr>
+          <tr><td>موقع ظهور المشكلة</td><td>71</td><td>السياق المكاني له أثر على التطبيق المستقبلي</td></tr>
+        </tbody>
+      </table>
+      <div class="box" style="margin-top:14px;">💡 <strong>دلالة جوهرية:</strong> الدرس المستفاد ليس فقط "النتيجة" — بل السياق (الزمني، الجغرافي، التنافسي) والأسلوب الذي اتُّبع والبدائل التي رُفضت. هذا يعني أن سجلات الدروس يجب أن تكون أغنى وأكثر سردية من مجرد ملخصات نتائج.</div>
+    </div>
+  </div>
+
+  <h3 class="sec">التصنيف بحسب أنواع الخبرة</h3>
+  <table class="tbl">
+    <thead><tr><th>نوع الخبرة</th><th>مصدرها</th><th>تصف الفشل؟</th><th>تصف النجاح؟</th><th>التوجّه</th></tr></thead>
+    <tbody>
+      <tr><td><strong>الدروس المستفادة</strong></td><td>التجربة</td><td>✅</td><td>✅</td><td>الشركة</td></tr>
+      <tr><td><strong>تقارير الحوادث</strong></td><td>التجربة</td><td>✅</td><td>❌</td><td>الشركة</td></tr>
+      <tr><td><strong>التنبيهات</strong></td><td>التجربة</td><td>✅</td><td>❌</td><td>القطاع</td></tr>
+      <tr><td><strong>الذاكرة المؤسسية</strong></td><td>ربما</td><td>✅</td><td>✅</td><td>الشركة</td></tr>
+      <tr><td><strong>أفضل الممارسات</strong></td><td>ربما</td><td>❌</td><td>✅</td><td>القطاع</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sec">السياق ومصفوفة الأهمية والإدراك</h3>
+  <p class="pr">يُقدّم الفصل تحليلاً مميزاً: الأحداث التي يمكن أن تتحوّل إلى دروس تقع في أربعة أرباع تُحددها محورا "الأهمية" و"القدرة على الإدراك":</p>
+  <ul class="bl">
+    <li><strong>الربع الأول (مهم + يُمكن إدراكه):</strong> المنجم الحقيقي للدروس المستفادة — هذه الأحداث تُفهَم جيداً وتستحق التوثيق.</li>
+    <li><strong>الربع الثاني (مهم + لا يُمكن إدراكه حالياً):</strong> مصدر دروس مستقبلية — أهميته ستتضح مع الوقت.</li>
+    <li><strong>الربعان الثالث والرابع (غير مهم):</strong> لا تستحق الاستثمار في التوثيق.</li>
+  </ul>
+
+  <h3 class="sec">أنواع المجتمعات المعرفية — كيف تنشأ الخبرة؟</h3>
+  <p class="pr">يستند الفصل إلى Evans (2003) لتصنيف السياقات التنظيمية التي تُولّد الخبرة وتُديرها:</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>إطار تحليلي</span> — أنواع مجتمعات الخبرة (Evans 2003)</div>
+    <div class="ig-body">
+      <div class="g2">
+        <div class="mc" style="--c:#3db8ff"><div class="mc-icon">📋</div><div class="mc-title">المجتمع البيروقراطي</div><div class="mc-desc">مجال "المعروف المعروف". أمثلة: الأنظمة المحاسبية. الخطر: الإخفاق في ملاحظة التغييرات. الخبرة في عقول المسؤولين — وقد تُصبح عاملاً للجمود.</div></div>
+        <div class="mc" style="--c:#f2b52a"><div class="mc-icon">🔬</div><div class="mc-title">مجتمع الخبراء</div><div class="mc-desc">مجال "المجهول المعروف". يقوم على التعرف والتحليل، والتعلم محوري فيه. الخبرة في عقول الخبراء. محبوب لدى مؤيدي إدارة المعرفة.</div></div>
+        <div class="mc" style="--c:#5ed87e"><div class="mc-icon">🌐</div><div class="mc-title">المجتمع الظلي</div><div class="mc-desc">مجال "المجهول المجهول". يقوم على شبكة من المجتمعات غير الرسمية. يدعم التجريب وحق ارتكاب الأخطاء. الخبرة تتجدد باستمرار. مثالي للابتكار والمستجدات.</div></div>
+        <div class="mc" style="--c:#8b7dff"><div class="mc-icon">🌀</div><div class="mc-title">المجتمع الفوضوي</div><div class="mc-desc">فوضوي لكن مثمر للابتكار. يتعامل مع المشكلات غير المُهيكلة أساساً. لا خبرة راسخة — كل تجربة تحمل مفاجآت.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec" id="ch6-barrier">المفارقة الكبرى — العائق الثقافي</h3>
+  <p class="pr">يصل الفصل إلى قلبه الحقيقي في تشخيص التوتر البنيوي بين الحاجة للخبرة وإحجام الناس عن توثيقها:</p>
+
+  <div class="box red">
+    🤫 <strong>المفارقة البنيوية:</strong> الشركات تشعر بأشد حاجة لخبرتها السابقة لحظة الأزمة — وهو بالضبط الوقت الذي يرفض فيه الناس توثيق أخطائهم خوفاً من المحاسبة، وحرجاً من الاعتراف بالإخفاق، وانشغالاً بإدارة الأزمة نفسها.
+  </div>
+
+  <p class="pr">O'Donnell وآخرون (2012) يُؤكدون أن الخبرة الموثّقة ليست فقط للاستخدام المستقبلي — بل هي أداة تحفيزية قوية لمستخدمي الأنظمة الجدد. عرض قصص نجاح حقيقية وحالات موثّقة على مستخدمي ذكاء الأعمال الجدد أثبت فاعلية استثنائية في إقناعهم بقيمة الأنظمة.</p>
+
+  <div class="box gold">
+    🌱 <strong>الحل الثقافي:</strong> إنشاء بيئة آمنة للاعتراف بالخطأ هو شرط الدروس المستفادة الحقيقية. الشركة التي تُكافئ على الاعتراف بالإخفاق وتوثيقه تبني ذاكرة مؤسسية حية. أما التي تُعاقب عليه، فتبني مقبرة من الأخطاء المتكررة المُخفاة.
+  </div>
+
+<div class="example-block">
+  <div class="example-header">
+    <span class="et">💡 كيف تبني ثقافة الدروس المستفادة؟</span>
+    <span class="example-badge">مثال واقعي</span>
+  </div>
+  <div class="example-body"><strong>مبادئ عملية طبّقتها شركات ناجحة:</strong><br><br>
+🟢 <strong>"وقفة 15 دقيقة" بعد كل مشروع:</strong> ثلاثة أسئلة فقط — ما نجح؟ ما فشل؟ ما نفعله مختلفاً المرة القادمة؟<br>
+🟢 <strong>قاعدة "لا عقاب على الخطأ الموثّق":</strong> من يُبلّغ عن خطأ يحمي الشركة من تكراره — هو بطل لا مُذنب.<br>
+🟢 <strong>مكتبة القرارات المشتركة:</strong> ملف يحتوي أبرز قرارات الشركة + نتائجها + دروسها. يُحدَّث كل ربع سنة.<br>
+🟢 <strong>التوجيه بالقصص لا بالتعليمات:</strong> بدلاً من "افعل X"، قل "قبل سنتين حاولنا Y فكانت النتيجة Z — لهذا نفعل X الآن."<br><br>
+<em>الهدف: تحويل الشركة من "منظمة تعمل" إلى "منظمة تتعلم."</em></div>
+</div>
+
+</div>
+
+<hr class="div">
+
+<!-- ══════════════════════════════
+     CHAPTER 7
+══════════════════════════════ -->
+<div class="chapter" id="ch7">
+  <div class="ch-head">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#ff6b6b,#7a1a1a)">
+      <div class="ch-n">٧</div><div class="ch-lab">CH 7</div>
+    </div>
+    <div class="ch-info">
+      <div class="ch-tag">الفصل السابع</div>
+      <div class="ch-title">تقنيات ذكاء الأعمال</div>
+      <div class="ch-sub">المجموعة النجمة والمجموعة الصامتة — والمفاجأة في الأخيرة</div>
+    </div>
+  </div>
+
+  <p class="pr">يلفت الفصل الانتباه إلى حقيقة مثيرة للتساؤل: مجال ذكاء الأعمال اشتُهر كميدان تقني يُقوده الابتكار التكنولوجي المتسارع. لكن المؤلف يُبيّن أن هناك مجموعتَين من التقنيات — إحداهما تحظى باهتمام أكاديمي وتسويقي هائل، والأخرى أوسع انتشاراً وأكثر استخداماً في الواقع، لكنها تكاد لا تُذكر في الأدبيات.</p>
+<div class="bgn"><div class="bgn-text">للمبتدئين: تقنيات ذكاء الأعمال مثل أدوات المطبخ. السكين والملعقة تُستخدمان كل يوم في كل طبخة (المجموعة الصامتة). الخلاط الكهربائي والفرن المحترف أدوات قوية تُستخدم في مناسبات خاصة (المجموعة النجمة). الطاهي الجيد يُتقن الاثنين — لكن السكين والملعقة تُنجز معظم العمل الفعلي اليومي.</div></div>
+
+
+  <div class="ig">
+    <div class="ig-bar"><span>إنفوجرافيك</span> — المجموعتان من تقنيات ذكاء الأعمال</div>
+    <div class="ig-body">
+      <div class="ig-ht"><div class="lbl">الفصل السابع</div><h3>ليس كل الذكاء يصنعه الذكاء الاصطناعي</h3></div>
+      <div class="vs">
+        <div class="vs-s vs-push">
+          <div class="vs-title">🌟 المجموعة النجمة (المتقدمة)</div>
+          <p style="font-size:11.5px;color:var(--muted);margin-bottom:10px;">تحظى باهتمام أكاديمي وتسويقي هائل</p>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>مستودعات البيانات (Data Warehouses)</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>التحليل متعدد الأبعاد OLAP</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>التنقيب في البيانات (Data Mining)</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>الذكاء الاصطناعي والتعلم الآلي</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>تحليلات البيانات الضخمة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>التعلم العميق ومعالجة اللغة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>بحيرات البيانات (Data Lakes)</div>
+        </div>
+        <div class="vs-mid">
+          <div class="vs-l"></div>
+          <div class="vs-c">VS</div>
+          <div class="vs-l"></div>
+        </div>
+        <div class="vs-s vs-pull">
+          <div class="vs-title">🤫 المجموعة الصامتة (الأوسع انتشاراً)</div>
+          <p style="font-size:11.5px;color:var(--muted);margin-bottom:10px;">أقل حضوراً في الأدبيات، لكن أكثر استخداماً فعلياً</p>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>أنظمة ERP وقواعد البيانات التشغيلية</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>Microsoft Excel وجداول البيانات</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>أدوات البحث على الإنترنت</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>أدوات الاستعلام والتقارير البسيطة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>أدوات التواصل والتعاون</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>الحسابات والنماذج اليدوية</div>
+          <div class="vs-item"><div class="vd" style="background:var(--gold)"></div>الاستفسارات التحليلية الذاتية</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+<div class="example-block">
+  <div class="example-header">
+    <span class="et">💡 5 قواعد ذهبية لاستخدام Excel بذكاء</span>
+    <span class="example-badge">نصائح عملية</span>
+  </div>
+  <div class="example-body"><strong>بدلاً من أن يتحكم Excel فيك — تحكّم أنت فيه:</strong><br><br>
+1️⃣ <strong>ملف واحد للمصدر:</strong> لا تنسخ البيانات — استخدم روابط مباشرة للمصدر الأصلي<br>
+2️⃣ <strong>فصل البيانات عن التحليل:</strong> ورقة للبيانات الخام (لا تمسّها) · ورقة للحسابات · ورقة للعرض<br>
+3️⃣ <strong>وثّق معادلاتك:</strong> تعليق قصير يشرح ما تفعله كل معادلة معقدة ولماذا<br>
+4️⃣ <strong>معيار زمني موحّد:</strong> تأكد أن كل الأقسام تستخدم نفس تنسيق التاريخ<br>
+5️⃣ <strong>مراجعة دورية:</strong> أرسل ملفك لزميل يراجعه — الخطأ الذي لا تراه قد يراه هو<br><br>
+<em>Excel ليس المشكلة — طريقة استخدامه هي المشكلة.</em></div>
+</div>
+<h3 class="sec">التسلسل الزمني — ذكاء الأعمال بدأ قبل الكمبيوتر</h3>
+  <p class="pr">من أكثر أجزاء الفصل إثارةً: يؤكد المؤلف أن مصطلح "ذكاء الأعمال" استُخدم لأول مرة عام 1865 في كتاب Richard Devins "Cyclopaedia of Commercial and Business Anecdotes". ومنذ ذلك الحين:</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>تسلسل زمني</span> — محطات بارزة في تاريخ تقنيات ذكاء الأعمال</div>
+    <div class="ig-body">
+      <div class="tiers">
+        <div class="tier t4"><div class="tier-h">1865 — ذكاء الأعمال كمصطلح</div><div class="tier-b">Richard Devins يستخدم المصطلح في كتابه الموسوعي عن التجارة والأعمال.</div></div>
+        <div class="tier t3"><div class="tier-h">1945-1958 — بداية الحوسبة والذكاء</div><div class="tier-b">أول كمبيوتر ENIAC (1945)، ألان تورينج يقترح اختباره للذكاء (1950)، Luhn يستخدم مصطلح ذكاء الأعمال تقنياً (1958)، Rosenblatt يخلق أول شبكة عصبية.</div></div>
+        <div class="tier t2"><div class="tier-h">1963-1975 — نشوء قواعد البيانات وأنظمة القرار</div><div class="tier-b">أول نظام قواعد بيانات DBMS (1964)، IBM System/360، SPSS (1968)، نشوء مفهوم نظم دعم القرار DSS.</div></div>
+        <div class="tier t1"><div class="tier-h">1980-2000 — موجة مستودعات البيانات والذكاء المؤسسي</div><div class="tier-b">مستودعات البيانات، OLAP، أدوات إعداد التقارير التجارية، Gartner تُطلق المصطلح رسمياً (1989)، VisiCalc ثم Lotus-1-2-3 ثم Excel.</div></div>
+        <div class="tier t1"><div class="tier-h">2000-اليوم — البيانات الضخمة، السحابة، الذكاء الاصطناعي</div><div class="tier-b">Hadoop وبيئات البيانات الضخمة، سحابة البيانات، التعلم الآلي التطبيقي، نماذج اللغة الكبيرة. كل هذه امتداد لمسيرة بدأت قبل 160 سنة.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec" id="ch7-excel">إشكالية Excel — الديمقراطية التقنية وسيفها ذو الحدين</h3>
+  <p class="pr">يُفرد الفصل مساحة واسعة لظاهرة Excel كأداة ذكاء أعمال غير رسمية. الظاهرة مثيرة للاهتمام: Excel لم يُفرَض على أحد — بل انتشر طوعاً كجزء من موجة ديمقراطية تقنية مرتبطة بظهور الكمبيوتر الشخصي.</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>تحليل نقدي</span> — Excel كأداة ذكاء أعمال</div>
+    <div class="ig-body">
+      <div class="g2">
+        <div style="background:rgba(94,216,126,.06);border:1px solid rgba(94,216,126,.18);border-radius:var(--r);padding:16px 13px;">
+          <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:11px;">✅ مزايا Excel كأداة ذكاء</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>أداة ديمقراطية — لا يحتاج تدريباً تقنياً متخصصاً</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>سهل التعلم — تدنّ حاجز الدخول</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>مرن ومتعدد الاستخدامات — "سكين الجيش السويسري"</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>تحليل فوري عند الحاجة دون انتظار تقارير مركزية</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>يُقلّل الضغط على الأنظمة المركزية</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>معيار مشترك يُسهّل التشارك</div>
+        </div>
+        <div style="background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.18);border-radius:var(--r);padding:16px 13px;">
+          <div style="font-size:13px;font-weight:700;color:var(--red);margin-bottom:11px;">⚠️ مخاطر Excel الخفية</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>طبيعة فردية — خارج الأنظمة الرسمية وصعب الإدارة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>غير مُصمَّم للتعاون — العمل الجماعي على ملف واحد مُعقَّد</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>سهولة التعلم + قلة الخبرة = أخطاء في المعادلات والتنسيق</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>الأخطاء تتضاعف وتتكاثر دون أن يلاحظها أحد</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>نتائج متعارضة بين الأقسام — كل مسؤول يحسب بطريقته</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>"جزر Excel" معزولة تُشتّت الصورة المؤسسية</div>
+        </div>
+      </div>
+      <div class="box gold" style="margin-top:14px;">
+        📊 <strong>ظاهرة "Excel-ization":</strong> تحوّل ذكاء الأعمال في معظم الشركات إلى مجموعة ملفات Excel شخصية متناثرة — كل مسؤول يُدير عالمه المعلوماتي المعزول. هذا يُفرز تعارضات في الأرقام، ويُضيّع ساعات في "تسوية" الأرقام بين الأقسام، ويجعل الصورة المؤسسية الموحّدة ضرباً من الخيال.
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec">فئات تقنيات ذكاء الأعمال — نظرة شاملة</h3>
+  <p class="pr">يُقدّم الفصل تصنيفاً موسّعاً لتقنيات ذكاء الأعمال حسب وظيفتها:</p>
+  <ul class="bl">
+    <li><strong>جمع وتخزين البيانات:</strong> ETL، مستودعات البيانات، بحيرات البيانات — البنية التحتية التي يقوم عليها كل شيء.</li>
+    <li><strong>أدوات الخدمة الذاتية والاستعلام والتقارير:</strong> تُمكّن المستخدمين من الاستفسار دون وسيط تقني — تُمثّل الطبقة الأولى في النهج الطبقي.</li>
+    <li><strong>التحليل متعدد الأبعاد OLAP:</strong> تقطيع البيانات حسب أبعاد متعددة (منتج، منطقة، فترة زمنية) لاكتشاف الأنماط المخفية.</li>
+    <li><strong>التنقيب في البيانات (Data Mining):</strong> اكتشاف العلاقات والأنماط في مجموعات البيانات الكبيرة دون فرضيات محددة مسبقاً.</li>
+    <li><strong>تحليلات البيانات الضخمة والذكاء الاصطناعي:</strong> للأحجام الهائلة وسرعات التوليد العالية — تتطلب بنية تحتية مختلفة.</li>
+    <li><strong>تحليل النصوص:</strong> استخراج معلومات مُهيكلة من مصادر غير مُهيكلة كالتقارير والمراسلات والتغريدات.</li>
+    <li><strong>النمذجة والمحاكاة:</strong> اختبار السيناريوهات قبل تنفيذها — من أقدم وظائف دعم القرار.</li>
+    <li><strong>العرض والتصوير:</strong> تحويل المعلومات إلى صور وتفاعلات تُيسّر الفهم والتواصل.</li>
+  </ul>
+</div>
+
+<hr class="div">
+
+<!-- ══════════════════════════════
+     CHAPTER 8
+══════════════════════════════ -->
+<div class="chapter" id="ch8">
+  <div class="ch-head">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#8b7dff,#2a1e8a)">
+      <div class="ch-n">٨</div><div class="ch-lab">CH 8</div>
+    </div>
+    <div class="ch-info">
+      <div class="ch-tag">الفصل الثامن</div>
+      <div class="ch-title">نضج ذكاء الأعمال ورشاقته</div>
+      <div class="ch-sub">هل يمكن لذكاء الأعمال أن "ينضج" حقاً؟ وهل النضج هو الهدف؟</div>
+    </div>
+  </div>
+
+  <p class="pr">يبدأ الفصل بسؤال استفزازي: هل لا يزال موضوع "نضج ذكاء الأعمال" ذا صلة؟ أغلب نماذج النضج المعروفة صدرت بين 2005-2010 وانحسر النقاش حولها بعدها. يُقرّ المؤلف بهذا، لكنه يُجادل بأن النضج لا يزال مفهوماً حيّاً لثلاثة أسباب: استمرار أهمية ذكاء الأعمال وتوسّعه، الحاجة لفهم ديناميكيات تبنّيه وتطوّره، وارتباطه الوثيق بمفاهيم مهمة كالرشاقة والثقافة.</p>
+<div class="ba"><div class="ba-s ba-before"><div class="ba-lbl">🖥️ التقنية ناضجة في معظم الأحيان</div><div class="ba-text">مستودع البيانات يعمل بدقة. التقارير تخرج تلقائياً كل ليلة. لوحة المتابعة تُحدَّث كل ساعة. البنية التحتية ممتازة.</div></div><div class="ba-s ba-after"><div class="ba-lbl">🧠 الإدارة لا تزال تتعلم</div><div class="ba-text">المدير يفتح اللوحة مرة في الأسبوع. لا يثق بالأرقام دون تأكيد يدوي. القرارات لا تزال مبنية على 'الخبرة الشخصية' فقط. التدريب لم يحدث بعد.</div></div></div>
+
+
+  <h3 class="sec">ما معنى ذكاء الأعمال الناضج وغير الناضج؟</h3>
+  <p class="pr">يُقتبس من Gifford (2011) في تعريف ذكاء الأعمال غير الناضج: "حلول متفرقة وغير متسقة ومحدودة النطاق. كل نظام تشغيلي يبني قدراته الذكائية الخاصة دون الاستفادة من قدرات المؤسسة ككل. النتيجة: قرارات تشغيلية دون المستوى الأمثل ومحدودة النطاق." وبصورة أبسط: كل قسم يُحلّل عالمه المعزول بمعاييره الخاصة.</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>إنفوجرافيك</span> — مراحل نضج ذكاء الأعمال</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:var(--purple)"><div class="lbl">نماذج نضج BI</div><h3>من الفوضى المجزّأة إلى الرشاقة المتكيّفة</h3></div>
+      <div class="mat">
+        <div class="mat-s"><div class="mat-n" style="background:#ff6b6b">١</div><div class="mat-l">📊 جُزَر معزولة<br><span style="font-size:10px;color:var(--muted)">حلول متفرقة</span></div></div>
+        <div class="mat-s"><div class="mat-n" style="background:#ff8c42">٢</div><div class="mat-l">🔧 مُدارة<br><span style="font-size:10px;color:var(--muted)">عمليات موحّدة</span></div></div>
+        <div class="mat-s"><div class="mat-n" style="background:#f2b52a">٣</div><div class="mat-l">📈 مُحسَّنة<br><span style="font-size:10px;color:var(--muted)">مقيّسة ومحسَّنة</span></div></div>
+        <div class="mat-s"><div class="mat-n" style="background:#5ed87e">٤</div><div class="mat-l">🌐 مُؤسَّسية<br><span style="font-size:10px;color:var(--muted)">تُدعم الاستراتيجية</span></div></div>
+        <div class="mat-s"><div class="mat-n" style="background:#00c4e4">٥</div><div class="mat-l">⚡ رشيقة<br><span style="font-size:10px;color:var(--muted)">تتكيّف مع التغيير</span></div></div>
+      </div>
+      <div class="box purple" style="margin-top:16px;">
+        🔑 <strong>الاكتشاف المحوري:</strong> المرحلة "الخامسة" أو "المثالية" في نماذج النضج ليست حالة استقرار نهائية — بل هي القدرة على التكيّف المستمر. وهذا بالضبط ما يُسمّيه المؤلف <strong>الرشاقة (Agility)</strong>. ذكاء الأعمال الناضج حقاً لا يصل إلى مرحلة "اكتمل" — بل إلى مرحلة "جاهز لما سيأتي".
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec">الفجوة بين نضج التقنية ونضج الإدارة</h3>
+  <p class="pr">إحدى أهم إضافات الكتاب: التمييز الدقيق بين نوعَين من النضج في ذكاء الأعمال:</p>
+  <ul class="bl">
+    <li><strong>نضج تقنية ذكاء الأعمال:</strong> الأنظمة ومستودعات البيانات والأدوات التحليلية ناضجة تقنياً منذ سنوات — مُجرَّبة ومستقرة وموثوقة.</li>
+    <li><strong>نضج القدرات الإدارية والبشرية:</strong> القدرة على استخدام هذه التقنيات بفعالية — المهارات التحليلية، الحكم على النتائج، بناء الثقة، المشاركة — لا تزال في مراحل مبكرة في معظم المؤسسات.</li>
+  </ul>
+  <div class="box red">
+    ⚡ <strong>التناقض المحير:</strong> كثير من مشاريع ذكاء الأعمال تفشل ليس لأن التقنية لم تعمل — بل لأن الجانب الإنساني لم يُستعَدّ له. التقنية تعمل بدقة؛ المشكلة أن أحداً لم يُدرّب الناس على استخدامها، أو لم تُبنَ ثقة في نتائجها، أو لم تتشكّل ثقافة تُقدّر القرار المبني على البيانات.
+  </div>
+
+  <h3 class="sec" id="ch8-agility">ما بعد النضج: مفهوم الرشاقة</h3>
+  <p class="pr">بينما تتمحور نماذج النضج حول سؤال "كيف بنينا ذكاءنا بشكل صحيح؟"، تُجيب الرشاقة على سؤال مختلف جذرياً: "كيف نتكيّف حين تتغيّر الأمور؟". والأمور تتغيّر دائماً.</p>
+
+  <p class="pr">يتتبّع الكتاب جذور مفهوم رشاقة ذكاء الأعمال من Keen (1980) الذي ناقش تكيّف أنظمة دعم القرار مع أنماط استخدام غير متوقعة، إلى Evelson (2011) الذي لاحظ أن التقنيات "الناضجة" من الجيل السابق فشلت في معالجة حقيقة تجارية بسيطة: الحاجة للمرونة والتكيّف.</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>تحليل</span> — النضج مقابل الرشاقة: فرق جوهري</div>
+    <div class="ig-body">
+      <div class="vs">
+        <div class="vs-s vs-push">
+          <div class="vs-title">📊 نضج BI</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>يُجيب: "كيف بنينا بشكل صحيح؟"</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>يُركّز على مراحل التبنّي والقبول</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>الأسئلة المعروفة أُجيبت</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>يفترض نقطة "اكتمال" مثالية</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>يُعالج البيئة الداخلية أساساً</div>
+        </div>
+        <div class="vs-mid">
+          <div class="vs-l"></div>
+          <div class="vs-c" style="font-size:10px">VS</div>
+          <div class="vs-l"></div>
+        </div>
+        <div class="vs-s vs-pull">
+          <div class="vs-title">⚡ رشاقة BI</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>يُجيب: "كيف نتكيّف مع ما سيأتي؟"</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>يُركّز على الديناميكية في بيئة متغيّرة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>استعداد للأسئلة غير المعروفة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>النضج = الاستعداد للتغيّر المستمر</div>
+          <div class="vs-item"><div class="vd" style="background:var(--red)"></div>يُعالج البيئة الداخلية والخارجية</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="pr">يستشهد الكتاب بدراسة ميدانية مثيرة: سُئل المديرون عن التغييرات البيئية التي تستدعي تغيير إجراءات مراقبة البيئة. أبرز المحرّكات كانت: تسارع ديناميكيات السوق، التغيّرات التنظيمية والقانونية، الإصلاحات الاقتصادية الكبرى، وظهور منافسين جدد. هذه الاكتشافات تدعم فكرة أن <strong>ذكاء الأعمال في بيئة متغيرة لن يصل أبداً إلى حالة "اكتمال"</strong>.</p>
+
+  <div class="box gold">
+    💡 <strong>الخلاصة الجوهرية:</strong> نماذج النضج مفيدة لفهم مراحل التبنّي، لكنها قد تُضلّل بإيحائها بوجود "مرحلة نهائية مثالية". الحقيقة أن المؤسسة التي تصل لمرحلة متقدمة من النضج تحتاج فوراً للتحوّل نحو الرشاقة — أي الاستعداد للتخلّي عما أتقنته وبناء ما لم تتصوّره بعد. الرشاقة ليست مرحلة بعد النضج — بل هي الهدف الحقيقي منه.
+  </div>
+</div>
+
+<!-- CHAPTERS 9-11 AND CONCLUSION -->
+
+<hr class="div">
+
+<!-- ══════════════════════════════
+     CHAPTER 9
+══════════════════════════════ -->
+<div class="chapter" id="ch9">
+  <div class="ch-head">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#00c4e4,#006070)">
+      <div class="ch-n">٩</div><div class="ch-lab">CH 9</div>
+    </div>
+    <div class="ch-info">
+      <div class="ch-tag">الفصل التاسع</div>
+      <div class="ch-title">ثقافة ذكاء الأعمال</div>
+      <div class="ch-sub">السر الذي تتجاهله معظم مشاريع ذكاء الأعمال</div>
+    </div>
+  </div>
+
+  <p class="pr">قد يكون هذا الفصل الأكثر استراتيجية في الكتاب كله. جوهر الرسالة: في غالبية حالات فشل مشاريع ذكاء الأعمال الموثّقة، المشكلة الحاكمة ليست تقنية — بل <strong>ثقافية وإنسانية</strong>. Presthus (2014) يُصنّف أنظمة ذكاء الأعمال صراحةً باعتبارها "أنظمة اجتماعية-تقنية" تستحق فيها كفّتا الاجتماعي والتقني الثقل ذاته.</p>
+
+  <h3 class="sec">التحديات الست لـ Gartner في تطبيق ذكاء الأعمال</h3>
+  <p class="pr">دراسة Gartner (2008) على عدد كبير من المؤسسات رصدت ست تحديات رئيسية في تطبيق مشاريع ذكاء الأعمال — خمسة من ستة تتعلق بالناس والثقافة:</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>بيانات Gartner 2008</span> — أكبر التحديات في تطبيق ذكاء الأعمال</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:var(--accent)"><div class="lbl">Gartner Research 2008</div><h3>6 تحديات — 5 منها إنسانية وثقافية</h3></div>
+      <table class="tbl">
+        <thead><tr><th>التحدي</th><th>الجذر الثقافي / الإنساني</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>قيمة ذكاء الأعمال غير واضحة لمستخدميه الفعليين</strong><br><span style="font-size:11px;color:var(--muted)">المشروع تُطلقه الإدارة العليا، لكن المستخدمين الفعليين لا يرون كيف يخدم عملهم</span></td>
+            <td>انفصال بين الإدارة العليا والمستخدمين. المشاريع معزولة دون مجتمع أفقي مشترك.</td>
+          </tr>
+          <tr>
+            <td><strong>هيمنة "ثقافة Excel الشخصي"</strong><br><span style="font-size:11px;color:var(--muted)">المستخدمون يستخرجون البيانات ويُعالجونها في ملفاتهم الشخصية خارج الأنظمة المشتركة</span></td>
+            <td>جُزَر معلوماتية معزولة. نتائج متعارضة. لا مشاركة ولا توحيد للرؤى.</td>
+          </tr>
+          <tr>
+            <td><strong>إهمال جودة البيانات</strong><br><span style="font-size:11px;color:var(--muted)">الأنظمة المبنية على بيانات غير كاملة أو غير دقيقة تفقد ثقة مستخدميها</span></td>
+            <td>غياب حوكمة البيانات كمسؤولية مشتركة. "التعهيد الجماعي" لمراجعة البيانات ممكن لكن يتطلب ثقافة تعاون.</td>
+          </tr>
+          <tr>
+            <td><strong>ذكاء الأعمال لا يتطوّر مع تطوّر الأعمال</strong><br><span style="font-size:11px;color:var(--muted)">النظام المُثبَّت يُعامَل كأداة رسمية ثابتة لا تتغيّر</span></td>
+            <td>غياب ثقافة التكيّف والرشاقة — النظام الجامد يصبح عبئاً لا أداة.</td>
+          </tr>
+          <tr>
+            <td><strong>إفراط في الاستعانة بالخارج</strong><br><span style="font-size:11px;color:var(--muted)">بعض المؤسسات تُفوّض تطوير ذكاء أعمالها بالكامل لجهة خارجية</span></td>
+            <td>ذكاء الأعمال وظيفة استراتيجية حساسة تعكس فهماً داخلياً — لا تصلح للتفويض الكامل.</td>
+          </tr>
+          <tr>
+            <td><strong>غياب المعاني المشتركة للمصطلحات</strong><br><span style="font-size:11px;color:var(--muted)">كلمة "إيراد" تعني شيئاً مختلفاً في كل قسم</span></td>
+            <td>التناقض الدلالي يعكس ثقافة مؤسسية مجزّأة — كل قسم يتحدث "لهجته" الخاصة.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  
+<div class="example-block">
+  <div class="example-header">
+    <span class="et">💡 نفس النظام — نتيجتان مختلفتان تماماً</span>
+    <span class="example-badge">مثال واقعي</span>
+  </div>
+  <div class="example-body"><strong>شركتا تجزئة اشترتا نفس برنامج ذكاء الأعمال بنفس السعر:</strong><br>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;">
+<div style="background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.15);border-radius:8px;padding:14px;">
+<strong style="color:var(--red)">شركة أ — فشل</strong><br><br>
+<span style="color:var(--muted);font-size:13px;line-height:1.8;">
+التقارير تُرسَل دون قراءة<br>
+من أشار لمشكلة عُوقب<br>
+كل مدير "يثق بإكسله فقط"<br>
+النظام أُغلق بعد 8 أشهر
+</span>
+</div>
+<div style="background:rgba(94,216,126,.06);border:1px solid rgba(94,216,126,.15);border-radius:8px;padding:14px;">
+<strong style="color:var(--green)">شركة ب — نجاح</strong><br><br>
+<span style="color:var(--muted);font-size:13px;line-height:1.8;">
+اجتماع أسبوعي لمراجعة الأرقام<br>
+تُكافأ المبادرة في كشف الإشكاليات<br>
+تعريفات موحّدة لكل المصطلحات<br>
+بعد سنة: الإيراد زاد 18%
+</span>
+</div>
+</div>
+<br><em>الفرق الوحيد: الثقافة.</em></div>
+</div>
+<h3 class="sec">ثقافة المعلومات وأثرها على ذكاء الأعمال</h3>
+  <p class="pr">يُميّز الفصل بين ثلاث طبقات متداخلة في الثقافة المؤسسية ذات الصلة:</p>
+  <ul class="bl">
+    <li><strong>الثقافة المؤسسية (OC):</strong> القيم والأعراف والمعتقدات السائدة في الشركة ككل — الطبقة الأعمق والأصعب تغييراً.</li>
+    <li><strong>ثقافة المعلومات (IC):</strong> الطريقة التي تتعامل بها المؤسسة مع المعلومات — هل تُقدَّر وتُشارك وتُوثّق؟ أم تُحتجز وتُخفى وتُهمَل؟</li>
+    <li><strong>ثقافة ذكاء الأعمال (BIC):</strong> الطبقة الأخص — كيف تُجمَع الرؤى وتُوزَّع وتُستخدم في الأنشطة الاستخباراتية؟</li>
+  </ul>
+
+  <p class="pr">نتيجة مفاجئة من بحث الدكتوراه الذي استند إليه المؤلف: ثقافة المعلومات الإيجابية لا تنشأ تلقائياً مع اقتناء أفضل الأنظمة — بل تتطلب جهداً مقصوداً ومستداماً على مستوى القيادة والممارسات اليومية.</p>
+
+  <h3 class="sec" id="ch9-culture">سمات ثقافة ذكاء الأعمال الصحية</h3>
+  <p class="pr">استناداً إلى دراسات ميدانية عديدة، يُقدّم الفصل أبرز السمات التي تُميّز المؤسسات ذات الثقافة المعلوماتية الصحية:</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>إنفوجرافيك</span> — سمات ثقافة ذكاء الأعمال الصحية</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:var(--accent)"><div class="lbl">الفصل التاسع</div><h3>٩ سمات للثقافة المعلوماتية الصحية</h3></div>
+      <div class="cult-grid">
+        <div class="citem"><div class="ci">🔓</div><div class="ci-t">المشاركة الأفقية</div><div class="ci-d">المعلومة تتدفق عبر الأقسام كلها — لا تُحتجز كأداة سلطة أو نفوذ.</div></div>
+        <div class="citem"><div class="ci">😰</div><div class="ci-t">أمان الأخبار السيئة</div><div class="ci-d">من يُبلّغ عن مشكلة مبكراً يُكافأ، لا يُعاقب على إزعاج المسؤولين.</div></div>
+        <div class="citem"><div class="ci">📊</div><div class="ci-t">البيانات تتفوق على الآراء</div><div class="ci-d">الدليل الموضوعي يسبق الرأي الشخصي والمكانة الهرمية في اتخاذ القرار.</div></div>
+        <div class="citem"><div class="ci">🏫</div><div class="ci-t">التعلم من الأخطاء</div><div class="ci-d">الخطأ يُوثَّق ويُحلَّل ليصبح درساً — لا يُخفى خجلاً أو خوفاً.</div></div>
+        <div class="citem"><div class="ci">🤝</div><div class="ci-t">الثقة بين الوحدات</div><div class="ci-d">الأقسام تثق ببيانات بعضها وتعاونها حقيقي — لا تنافس خفي على المعلومة.</div></div>
+        <div class="citem"><div class="ci">🌍</div><div class="ci-t">المعاني المشتركة</div><div class="ci-d">كلمة "عميل" تعني الشيء نفسه للجميع — اتفاق على تعريفات المصطلحات.</div></div>
+        <div class="citem"><div class="ci">🔍</div><div class="ci-t">الشفافية إزاء الأخطاء</div><div class="ci-d">الاعتراف بالإخفاق ومعالجته علناً دليل نضج مؤسسي — لا ضعف.</div></div>
+        <div class="citem"><div class="ci">📚</div><div class="ci-t">تقدير الرؤى</div><div class="ci-d">المعلومات التحليلية العميقة تُعامَل كأصل استراتيجي قيّم يُستثمر لا كتقارير روتينية.</div></div>
+        <div class="citem"><div class="ci">🌱</div><div class="ci-t">دعم الانتباه الجماعي</div><div class="ci-d">الشركة تُشجّع على تبادل الملاحظات غير الرسمية — "لاحظت شيئاً مثيراً يستحق الانتباه".</div></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec">درس 11 سبتمبر — الصوامع قاتلة</h3>
+  <p class="pr">يستشهد الفصل بدراسة Hamrah (2013) في تحليل حادثة 11 سبتمبر الاستخباراتية:</p>
+  <div class="box red">
+    🚨 <strong>من تحليل Hamrah (2013):</strong> "الثقافة السائدة في مجتمع الاستخبارات لا تُشجّع على التعاون وتبادل المعلومات. هذا كان واضحاً في أن التحليلات لم تُجمَع وأن عمليات مشتركة فعّالة لم تُنفَّذ لمنع هجمات 11 سبتمبر. كل وكالة استخباراتية لها كفاءاتها وأنظمتها ومستودعات بياناتها المستقلة، مما يجعل من الصعب تجميع العوامل التي قد تُقدّم تحذيراً مبكراً." — هذا وصف حرفي لما يحدث في الشركات التي تُقسّم معلوماتها بين الأقسام دون تنسيق!
+  </div>
+
+  <h3 class="sec">دراسة ميدانية: وظائف ذكاء الأعمال الأكثر طلباً</h3>
+  <p class="pr">في استطلاع أجرته IT Summit (2015) على 69 مديراً في مؤسسات تستخدم أنظمة ذكاء الأعمال، جاءت الوظائف الأكثر طلباً:</p>
+  <table class="tbl">
+    <thead><tr><th>الوظيفة المطلوبة</th><th>النسبة</th><th>الدلالة الثقافية</th></tr></thead>
+    <tbody>
+      <tr><td>أمان البيانات وإدارة الصلاحيات</td><td style="color:var(--accent);font-weight:700">93%</td><td>الثقة بالخصوصية شرط المشاركة</td></tr>
+      <tr><td>التحليل الفوري (Real-time)</td><td>86%</td><td>طلب على سرعة الوعي الموقفي</td></tr>
+      <tr><td>جمع البيانات من مصادر متعددة</td><td>84%</td><td>الصورة الشاملة أهم من القطعة المعزولة</td></tr>
+      <tr><td>إمكانية مشاركة التقارير والرؤى</td><td>84%</td><td>المشاركة وليس التخزين هو القيمة الحقيقية</td></tr>
+      <tr><td>التحليل الذاتي بدون وسيط تقني</td><td>77%</td><td>ديمقراطية التحليل ضرورة لا رفاهية</td></tr>
+    </tbody>
+  </table>
+  <div class="box teal">المثير: مستخدمو ذكاء الأعمال ذوو الخبرة الفعلية يُعطون وظائف المشاركة أهمية أعلى بكثير من غير المستخدمين — 52% من المستخدمين أعطوا المشاركة درجة 9-10 مقارنة بـ 40% فقط من غير المستخدمين. الممارسة تُعلّم أهمية التشارك.</div>
+</div>
+
+<hr class="div">
+
+<!-- ══════════════════════════════
+     CHAPTER 10
+══════════════════════════════ -->
+<div class="chapter" id="ch10">
+  <div class="ch-head">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#f2b52a,#8b7dff)">
+      <div class="ch-n">١٠</div><div class="ch-lab">CH 10</div>
+    </div>
+    <div class="ch-info">
+      <div class="ch-tag">الفصل العاشر</div>
+      <div class="ch-title">العوامل الناعمة في ذكاء الأعمال</div>
+      <div class="ch-sub">الانتباه، المعنى، الثقة — الثروة غير المرئية</div>
+    </div>
+  </div>
+
+  <p class="pr">يُعالج الفصل ثلاثة عوامل يصعب قياسها وإدارتها، لكنها تُحدد في الواقع نجاح أو فشل أي منظومة ذكاء أعمال. هذه الثلاثة تُشترك في سمات مهمة: معترف بها كضرورية، نادرة وقابلة للاستنزاف، يصعب تقييمها وإدارتها، ولا أفق قريب لأتمتتها.</p>
+
+  <h3 class="sec" id="ch10-trio">الثالوث الناعم: انتباه، معنى، ثقة</h3>
+
+  <div class="ig">
+    <div class="ig-bar"><span>إنفوجرافيك</span> — الثالوث الناعم الذي يُحرّك ذكاء الأعمال</div>
+    <div class="ig-body">
+      <div class="sfbar">
+        <div class="sfc" style="background:rgba(242,181,42,.1);border:1px solid rgba(242,181,42,.2);">
+          <div class="sfc-icon">👁️</div>
+          <div class="sfc-title" style="color:var(--gold)">الانتباه (Attention)</div>
+          <div class="sfc-desc" style="color:#c9a444">يخص الفرد أساساً، وإن كان "الانتباه الجماعي" موضع بحث متنامٍ. موردٌ نادر — "ثروة من المعلومات تُولّد فقراً من الانتباه" (سيمون 1971).</div>
+        </div>
+        <div class="sfc" style="background:rgba(139,125,255,.1);border:1px solid rgba(139,125,255,.2);">
+          <div class="sfc-icon">💡</div>
+          <div class="sfc-title" style="color:var(--purple)">المعنى (Sense)</div>
+          <div class="sfc-desc" style="color:#9e8fff">يخص الفرد أساساً، رغم أن تبادل المعلومات يدعم بناء المعنى الجماعي. الهدف الحقيقي لكل نشاط في ذكاء الأعمال — البيانات بلا معنى ضجيج.</div>
+        </div>
+        <div class="sfc" style="background:rgba(0,196,228,.1);border:1px solid rgba(0,196,228,.2);">
+          <div class="sfc-icon">🤝</div>
+          <div class="sfc-title" style="color:var(--accent)">الثقة (Trust)</div>
+          <div class="sfc-desc" style="color:var(--accent2)">قضية جماعية تنشأ في العلاقات بين الأشخاص. معلومة صحيحة لا يُصدّقها أحد لا قيمة لها — الثقة شرط قابلية المعلومة للتصرف.</div>
+        </div>
+      </div>
+      <div class="box" style="margin-top:14px;">
+        🔗 <strong>التشابك بين الثلاثة:</strong> الانتباه المُهدَر يُدهور المعنى. المعنى الفاشل يُدهور الثقة. الثقة المنهارة تستنزف الانتباه في التحقق المتكرر بدلاً من الاستخدام المنتج. الدائرة الفضيلة: انتباه جيد ← معنى واضح ← ثقة متينة ← انتباه أكثر تركيزاً.
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec">الانتباه — مورد نادر في عصر الفيض</h3>
+  <p class="pr">أكثر المديرين يعملون في بيئة تُغرقهم بالتنبيهات والتقارير والبريد الإلكتروني والاجتماعات. نصيحة سيمون (1971) صارت أكثر إلحاحاً من أي وقت: "لكي يكون نظام معالجة المعلومات حافظاً للانتباه في مؤسسة، يجب أن يكون مكثّفاً للمعلومات."</p>
+
+<div class="example-block">
+  <div class="example-header">
+    <span class="et">💡 اختبر نظامك: هل يستنزف الانتباه أم يُحافظ عليه؟</span>
+    <span class="example-badge">اختبر نفسك</span>
+  </div>
+  <div class="example-body"><strong>أجب بصدق:</strong><ul style="margin:10px 0 0 20px;color:#9de3b0;line-height:2.1;font-size:13.5px;">
+<li>كم تنبيهاً تلقّاه موظفوك من الأنظمة أمس؟</li>
+<li>كم منها استدعى تصرفاً فعلياً؟</li>
+<li>كم من تقاريرك الأسبوعية يُقرأ بالكامل؟</li>
+<li>كم دقيقة يُمضيها مديروك في البحث عن المعلومة الصحيحة؟</li>
+</ul>
+<br>إذا كانت نسبة التنبيهات التي تستدعي تصرفاً أقل من 20% — نظامك يُنتج ضوضاءً لا ذكاءً.<br>
+<strong>قاعدة ذهبية: كل تنبيه لا يستدعي تصرفاً هو تلوث معلوماتي يُكلّفك انتباهاً لا تملك فائضاً منه.</strong></div>
+</div>
+
+  <p class="pr">هذا يعني أن تصميم ذكاء الأعمال الجيد ليس الذي يُقدّم أكبر قدر من المعلومات، بل الذي يُقدّم <em>أدق المعلومات في الوقت الأمثل بالشكل الأمثل للشخص الأمثل</em>. النظام الجيد يُنقّي الضوضاء، لا يُضاعفها.</p>
+
+  <h4 class="sub">استراتيجيات الحفاظ على الانتباه</h4>
+  <ul class="bl">
+    <li><strong>التبويب والتصنيف الذكي:</strong> المعلومة وفق الأولوية والسياق تُقلّل الحمل على الانتباه.</li>
+    <li><strong>التنبيهات الهادفة لا الكثيرة:</strong> نظام يُنبّه لكل كبيرة وصغيرة سرعان ما يُتجاهَل، وهو ما يُسمّيه الكتاب "تلوث الانتباه".</li>
+    <li><strong>التخصيص:</strong> أنظمة تعلم ما يهمك فعلاً وتُقدّم ما يستحق انتباهك — لا ما تُقدّمه افتراضياً للجميع.</li>
+    <li><strong>الهيكل الطبقي للمعلومات:</strong> الملخص أولاً، التفاصيل عند الطلب — يُتيح إدارة الانتباه بفاعلية.</li>
+  </ul>
+
+  <h3 class="sec">المعنى — الهدف الحقيقي لكل نشاط معلوماتي</h3>
+  <p class="pr">يُميّز الفصل بين ثلاثة أنماط لاستقبال معلومة جديدة:</p>
+  <ul class="bl gold">
+    <li><strong>إضافة المعنى:</strong> المعلومة الجديدة تتصل بما هو معروف وتُثريه — "آه، هذا يُفسّر لماذا..."</li>
+    <li><strong>المعنى الثابت:</strong> المعلومة تُؤكد ما هو معروف دون إضافة — يُعزّز الثقة دون توليد فهم جديد.</li>
+    <li><strong>هدم المعنى (Sense Unmaking):</strong> المعلومة الجديدة تتعارض مع ما كان معروفاً — "هذا لا منطق فيه الآن!" هذا يستدعي إعادة بناء الفهم من الأساس، وهو عملية استكشافية مرهقة لكن ضرورية.</li>
+  </ul>
+
+  <p class="pr">يُحذّر المؤلف من خطر عصري متنامٍ: الثقة العمياء بالخوارزميات. حين تُنتج نماذج الذكاء الاصطناعي أنماطاً "مُثبتة إحصائياً" دون أن يفهمها أحد، يبدأ المستخدمون بقبولها دون تفكير نقدي. Madsbjerg (2017) يُجادل بأن التفكير النقدي البشري يجب أن يُوازن هذه الثقة التلقائية.</p>
+
+  <div class="box gold">
+    🔬 <strong>مثال من Grimes (2007) على تقدم تحليل النص:</strong> "عندما يستطيع البرنامج تحليل 'الخدمة كانت سيئة' ويبادر بالاستجابة المناسبة، وعندما يبدأ في استيعاب المعنى غير الحرفي لعبارة مثل 'نعم، هذه الفكرة رائعة حقاً' (قالها ساخراً) — عندها فقط نكون قد حققنا فعلاً ما رسمه Luhn في 1958 كهدف لأنظمة ذكاء الأعمال." الفجوة لا تزال قائمة حتى اليوم!
+  </div>
+
+  <h3 class="sec">الثقة — الشرط الصامت للتصرف</h3>
+  <p class="pr">المعلومة الصحيحة التي لا يُصدّقها أحد لا تختلف عملياً عن المعلومة الخاطئة — كلاهما لن يُفضي إلى تصرف. Tunkelang (2013) يبني إطاراً ثلاثي المستويات: معلومات ← انتباه ← ثقة. هذا الإطار يتوافق مع ما يطرحه هذا الكتاب بشكل لافت.</p>
+  <p class="pr">مصادر تآكل الثقة في أنظمة ذكاء الأعمال عديدة: تعارض في الأرقام بين الأقسام، مصادر غير موثوقة الأصل، نتائج لا تتوافق مع الحدس المبني على الخبرة، أو نظام لم يُتح شرح كيف توصّل إلى ما توصّل إليه.</p>
+
+  <div class="ig">
+    <div class="ig-bar"><span>توزيع بيانات</span> — درجات الثقة بالمعلومات (من دراسة للمؤلف)</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:var(--teal)"><div class="lbl">نتائج ميدانية</div><h3>كيف يثق المديرون بمعلوماتهم؟</h3></div>
+      <table class="tbl">
+        <thead><tr><th>درجة الثقة بالمعلومة</th><th>النسبة في الدراسة</th><th>تداعياتها</th></tr></thead>
+        <tbody>
+          <tr><td>ثقة كاملة / شبه كاملة</td><td style="color:var(--green);font-weight:700">~20%</td><td>تصرف فوري ومباشر بلا تردد</td></tr>
+          <tr><td>ثقة معقولة مع تحفظات</td><td style="color:var(--gold);font-weight:700">~50%</td><td>تصرف مع احتياط إضافي أو تحقق جزئي</td></tr>
+          <tr><td>ثقة منخفضة — يحتاج تحقق</td><td style="color:var(--red);font-weight:700">~30%</td><td>تأخير القرار لحين التأكد — وقد لا يتأكد أبداً</td></tr>
+        </tbody>
+      </table>
+      <div class="box" style="margin-top:12px;">الأثر الكبير: ثلث المعلومات المستخدمة في القرارات تُعامَل بثقة منخفضة. هذا يعني كثيراً من التردد وإعادة التحقق ضياعاً غير ضروري للوقت.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ══════════════════════════════
+     CHAPTER 11
+══════════════════════════════ -->
+<div class="chapter" id="ch11">
+  <div class="ch-head">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#5ed87e,#8b7dff)">
+      <div class="ch-n">١١</div><div class="ch-lab">CH 11</div>
+    </div>
+    <div class="ch-info">
+      <div class="ch-tag">الفصل الحادي عشر</div>
+      <div class="ch-title">ذكاء الأعمال الشامل — التعليم والبحث</div>
+      <div class="ch-sub">خيوط الكتاب كلها في رؤية واحدة متكاملة</div>
+    </div>
+  </div>
+
+  <p class="pr">الفصل الختامي يجمع كل خيوط الكتاب ويُقدّم صورة مُركَّبة للهدف الأسمى: <strong>ذكاء الأعمال الشامل</strong> — منظومة وعي مؤسسية تُغطّي كل الأبعاد الحيوية وتُسعف المؤسسة على مواجهة الواقع بعيون مفتوحة.</p>
+<div class="qb"><p>النظام الذي يجعلك 'تعرف كل شيء' ليس النظام الأفضل. النظام الأفضل هو الذي يجعلك تعرف الشيء الصحيح في الوقت الصحيح، ويُطلق انتباهك نحو الفرص لا نحو الضوضاء.</p><cite>— مبدأ أساسي في تصميم ذكاء الأعمال</cite></div>
+
+
+  <h3 class="sec">ما الذي "يصمد أمام اختبار الزمن"؟</h3>
+  <p class="pr">يُعدّد المؤلف المبادئ التي تجاوزت موجات التقنية والمصطلحات المتعاقبة وبقيت صالحة:</p>
+  <ul class="bl green">
+    <li><strong>احتياجات المستخدمين المعلوماتية</strong> — تتغيّر في تفاصيلها لكن جوهرها ثابت: الحاجة للوضوح والإدراك الكافي للسياق.</li>
+    <li><strong>جودة البيانات المصدر</strong> — إشكالية أبدية لا تحلّها التقنيات الجديدة بمفردها.</li>
+    <li><strong>فهم قدرات التقنية وحدودها</strong> — ضرورة دائمة لكل مدير في كل عصر تقني.</li>
+    <li><strong>الدور المحوري للعوامل الإنسانية</strong> — الثقافة، الثقة، الانتباه، المعنى — لن تُختزَل في خوارزميات.</li>
+    <li><strong>ذكاء الأعمال عملية لا نهاية لها</strong> — "في عالم متغيّر، ذكاء الأعمال محكوم عليه بالنضج الأبدي الناقص."</li>
+  </ul>
+
+  <h3 class="sec">ذكاء الأعمال الشامل — ما الذي يجب أن يُغطّيه؟</h3>
+
+  <div class="ig">
+    <div class="ig-bar"><span>إنفوجرافيك</span> — خريطة التغطية في ذكاء الأعمال الشامل</div>
+    <div class="ig-body">
+      <div class="ig-ht" style="--c:var(--green)"><div class="lbl">الفصل الحادي عشر</div><h3>ذكاء الأعمال الشامل = تغطية داخلية + خارجية + استجابة</h3></div>
+      <div class="g2">
+        <div style="background:rgba(0,196,228,.07);border:1px solid rgba(0,196,228,.2);border-radius:var(--r);padding:18px 15px;">
+          <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:12px;">🏢 التغطية الداخلية</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>الوضع التشغيلي الراهن في كل مستوى</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>الأداء المالي والكفاءة التشغيلية</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>الكفاءات البشرية وقدراتها وفجواتها</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>النجاحات والإخفاقات السابقة الموثّقة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--accent)"></div>الأصول والمصادر المتاحة وكيفية استخدامها</div>
+        </div>
+        <div style="background:rgba(94,216,126,.07);border:1px solid rgba(94,216,126,.2);border-radius:var(--r);padding:18px 15px;">
+          <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:12px;">🌍 التغطية الخارجية</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>العملاء: سلوكهم واحتياجاتهم وتوقعاتهم</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>المنافسون: قدراتهم واستراتيجياتهم المحتملة</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>الموردون وسلاسل التوريد واستقرارها</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>الاقتصاد الكلي: تضخم، أسعار فائدة، تشريعات</div>
+          <div class="vs-item"><div class="vd" style="background:var(--green)"></div>المشهد التقني والابتكارات المُقلِبة للمعادلة</div>
+        </div>
+      </div>
+      <div class="box gold" style="margin-top:14px;">
+        📚 <strong>انضباطات التنظيم المتعلّم لـ Peter Senge (من كتاب The Fifth Discipline):</strong> يستند المؤلف إلى نموذج Senge كإطار إنساني لذكاء الأعمال الشامل: التفكير المنظومي ← الكفاءة الشخصية ← النماذج الذهنية ← بناء الرؤية المشتركة ← التعلم الجماعي. هذه الانضباطات الخمس هي الجوهر البشري الذي يجعل الذكاء مؤسسياً لا فردياً.
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec">أدوار المتخصصين في ذكاء الأعمال — المستقبل</h3>
+  <p class="pr">يستعرض الفصل تصنيفاً لـ Wixom وآخرين (2014) لأنواع المتخصصين الذين تحتاجهم منظومة ذكاء الأعمال الشاملة:</p>
+  <table class="tbl">
+    <thead><tr><th>الدور</th><th>المهمة الجوهرية</th><th>الكفاءات المطلوبة</th></tr></thead>
+    <tbody>
+      <tr><td><strong>محلل البيانات</strong></td><td>استخراج الأنماط والرؤى من البيانات الخام</td><td>إحصاء، تنقيب، برمجة، فهم الأعمال</td></tr>
+      <tr><td><strong>محلل الأعمال</strong></td><td>ترجمة متطلبات الأعمال إلى مواصفات معلوماتية</td><td>فهم عميق للأعمال + مهارات تواصل</td></tr>
+      <tr><td><strong>استراتيجي المعلومات</strong></td><td>تصميم منظومة الذكاء وتنسيقها مؤسسياً</td><td>رؤية شاملة + قيادة التغيير</td></tr>
+      <tr><td><strong>العميل الذكي</strong></td><td>استخدام الرؤى في القرارات اليومية بثقة</td><td>قراءة نقدية للبيانات + ثقة مناسبة</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sec">مراجعة منطق الكتاب — ماذا قلنا؟</h3>
+  <p class="pr">في ختام الفصل يُلخّص المؤلف المسيرة الفكرية للكتاب كاملاً:</p>
+  <ol class="nl">
+    <li><strong>الفصل 2</strong> حدّد ذكاء الأعمال كممارسة مؤسسية تُلبّي احتياجات المعلومات المعقدة وتُنتج الرؤى — لا كبرنامج أو نظام.</li>
+    <li><strong>الفصل 3</strong> رسم علاقة ذكاء الأعمال بالأنظمة الأخرى وقدّم دورة الذكاء وأنواع الاحتياجات.</li>
+    <li><strong>الفصل 4</strong> بيّن كيف تنعكس أبعاد الأعمال على تصميم نظام الذكاء المثالي لكل مؤسسة.</li>
+    <li><strong>الفصل 5</strong> ناقش تكامل المعلومات كمسار نحو بناء الصورة الأشمل وصنع المعنى الأعمق.</li>
+    <li><strong>الفصل 6</strong> تناول الخبرة المتراكمة والدروس كعمود من أعمدة المعرفة المؤسسية المستدامة.</li>
+    <li><strong>الفصل 7</strong> استعرض تقنيات ذكاء الأعمال "النجمة والصامتة" دون الاستغراق في التقنية.</li>
+    <li><strong>الفصل 8</strong> ناقش نضج ذكاء الأعمال كمحطات في مسيرة لا نهاية لها، والرشاقة كهدف أبعد وأجدى من النضج المفهوم كاكتمال.</li>
+    <li><strong>الفصل 9</strong> حدّد ثقافة ذكاء الأعمال كالبيئة التي تُحيي النظام أو تُميته — وأثبت أنها أهم من التقنية في تحديد النجاح.</li>
+    <li><strong>الفصل 10</strong> كشف العوامل الناعمة الثلاثة — الانتباه والمعنى والثقة — كأصول مؤسسية خفية يجب صونها بوعي.</li>
+    <li><strong>الفصل 11</strong> يجمع كل هذا في رؤية ذكاء الأعمال الشامل ويتطلّع إلى مستقبل البحث والتعليم في المجال.</li>
+  </ol>
+</div>
+
+<hr class="div">
+
+<!-- ══════════════════════════════
+     CONCLUSION
+══════════════════════════════ -->
+
+<div class="example-block">
+  <div class="example-header">
+    <span class="et">💡 خارطة طريق المبتدئ — ابدأ من هنا</span>
+    <span class="example-badge">للمبتدئين: ابدأ من هنا</span>
+  </div>
+  <div class="example-body"><strong>5 خطوات عملية لمن يبدأ رحلته مع ذكاء الأعمال:</strong>
+<div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
+<div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(0,196,228,.06);border-radius:8px;border:1px solid rgba(0,196,228,.1);"><span style="font-size:20px;flex-shrink:0;">📊</span><div><strong style="color:var(--accent)">الخطوة ١ — افهم بياناتك أولاً</strong><br><span style="font-size:13px;color:var(--muted);">ما البيانات الموجودة؟ أين هي؟ هل هي موثوقة؟ قبل أي برنامج.</span></div></div>
+<div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(242,181,42,.06);border-radius:8px;border:1px solid rgba(242,181,42,.1);"><span style="font-size:20px;flex-shrink:0;">❓</span><div><strong style="color:var(--gold)">الخطوة ٢ — حدّد أسئلتك</strong><br><span style="font-size:13px;color:var(--muted);">ما القرارات التي تحتاج تحسينها؟ ما الأسئلة التي لا تستطيع الإجابة عليها الآن؟</span></div></div>
+<div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(94,216,126,.06);border-radius:8px;border:1px solid rgba(94,216,126,.1);"><span style="font-size:20px;flex-shrink:0;">🛠️</span><div><strong style="color:var(--green)">الخطوة ٣ — ابدأ بسيطاً</strong><br><span style="font-size:13px;color:var(--muted);">Excel + تقرير أسبوعي منتظم + مشاركة مع الفريق. لا تنتظر النظام المثالي.</span></div></div>
+<div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(139,125,255,.06);border-radius:8px;border:1px solid rgba(139,125,255,.1);"><span style="font-size:20px;flex-shrink:0;">🤝</span><div><strong style="color:var(--purple)">الخطوة ٤ — اشرك الناس</strong><br><span style="font-size:13px;color:var(--muted);">شارك تقاريرك مع المعنيين. اسمع ردود الفعل. التغذية الراجعة أهم من الأداة.</span></div></div>
+<div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(255,107,107,.06);border-radius:8px;border:1px solid rgba(255,107,107,.1);"><span style="font-size:20px;flex-shrink:0;">📈</span><div><strong style="color:var(--red)">الخطوة ٥ — طوّر تدريجياً</strong><br><span style="font-size:13px;color:var(--muted);">بعد 6 أشهر ستعرف بالضبط ما تحتاجه من أدوات. استثمر بعدها بثقة وبصيرة.</span></div></div>
+</div></div>
+</div>
+<div class="chapter" id="conclusion">
+  <div class="ch-head">
+    <div class="ch-badge" style="background:linear-gradient(135deg,var(--accent),var(--gold))">
+      <div class="ch-n">✦</div><div class="ch-lab">خاتمة</div>
+    </div>
+    <div class="ch-info">
+      <div class="ch-tag">الخلاصة الكبرى</div>
+      <div class="ch-title">ما يجب أن تُغادر به</div>
+      <div class="ch-sub">ثماني مبادئ تلخّص رسالة الكتاب كاملاً</div>
+    </div>
+  </div>
+
+  <p class="pr">الكتاب بكل فصوله يُؤسّس لرؤية واحدة متماسكة: <strong>ذكاء الأعمال الناجح هو ذلك الذي يضع الإنسان في مركزه</strong>، يحترم تعقيد احتياجاته، يستثمر تقنياته بوعي ودون تقديسها، ويُحتضن بثقافة مؤسسية صحية تعدّ المعلومة أصلاً استراتيجياً وتجعل المشاركة عرفاً راسخاً.</p>
+
+  <div class="con-grid">
+    <div class="con-card" style="--cc:#00c4e4">
+      <div class="con-n">١</div>
+      <div class="con-t">الإنسان أولاً وآخراً</div>
+      <div class="con-d">الأدوات تُساعد الإنسان وتُحرّره من الرتابة — لكن الحكم والسياق والحدس البشري لا يُعوَّض عنه. من يُصمّم الذكاء لإحلال الإنسان بدلاً من تمكينه يبني على أساس واهٍ.</div>
+    </div>
+    <div class="con-card" style="--cc:#f2b52a">
+      <div class="con-n">٢</div>
+      <div class="con-t">الاحتياج يسبق الأداة</div>
+      <div class="con-d">ابدأ دائماً بالسؤال: ما الذي نحتاج فعلاً معرفته؟ ما المشكلة التي نحاول حلّها؟ ثم اختر الأداة. من يشتري الأداة أولاً ثم يبحث لها عن استخدام يُهدر المال والوقت والثقة.</div>
+    </div>
+    <div class="con-card" style="--cc:#8b7dff">
+      <div class="con-n">٣</div>
+      <div class="con-t">الثقافة أهم من التقنية</div>
+      <div class="con-d">أغلى نظام في العالم يفشل في مؤسسة تُعاقب على الصراحة وتُكافئ على إخفاء المشكلات. التقنية بدون ثقافة تُقدّر المعلومة وتُشارك الرؤى مال مُهدَر في إنفراستراكتشر لا يُستخدم.</div>
+    </div>
+    <div class="con-card" style="--cc:#ff6b6b">
+      <div class="con-n">٤</div>
+      <div class="con-t">الصورة الكاملة من التكامل</div>
+      <div class="con-d">الصوامع المعلوماتية بين الأقسام هي عدو الذكاء الحقيقي. الجزء الصحيح لا يُعطي الصورة الكاملة — وقد يكون مُضلِّلاً أكثر مما يكون مُفيداً.</div>
+    </div>
+    <div class="con-card" style="--cc:#5ed87e">
+      <div class="con-n">٥</div>
+      <div class="con-t">الرشاقة فوق النضج</div>
+      <div class="con-d">النضج محطة في المسيرة، ليس وجهتها. الذكاء الجيد يتكيّف مع التغيّر باستمرار. من يعتقد أن نظامه "اكتمل" يُحضّر للمفاجأة القادمة.</div>
+    </div>
+    <div class="con-card" style="--cc:#ffb84d">
+      <div class="con-n">٦</div>
+      <div class="con-t">التغذية الراجعة شرط التطور</div>
+      <div class="con-d">بلا تعلم من النتائج، الذكاء يُكرّر الأخطاء إلى الأبد. الدورة المغلقة التي تجمع البيانات وتُنتج الرؤية وتتعلم من الاستخدام هي شرط التحسين المستمر.</div>
+    </div>
+    <div class="con-card" style="--cc:#2adbbc">
+      <div class="con-n">٧</div>
+      <div class="con-t">الخبرة أصل استراتيجي</div>
+      <div class="con-d">الدروس المستفادة المُوثَّقة كنز لا يُقدَّر، لكنه يتبخّر دون مجهود وعي. المؤسسة التي تُوثّق خبراتها تبني ميزة تنافسية يصعب على المنافسين تقليدها.</div>
+    </div>
+    <div class="con-card" style="--cc:#8b7dff">
+      <div class="con-n">٨</div>
+      <div class="con-t">صوّن الانتباه والمعنى والثقة</div>
+      <div class="con-d">العوامل الناعمة الثلاثة موارد قابلة للاستنزاف. ذكاء الأعمال الجيد يبنيها ويصونها، لا يُهدرها بالإغراق بالمعلومات والأرقام غير الموثوقة.</div>
+    </div>
+  </div>
+
+  <div class="fq">
+    <p>"في نهاية المطاف، ذكاء الأعمال ليس تقنية تشتريها، ولا برنامجاً تُثبّته، ولا نظاماً 'يكتمل'. إنه طريقة تفكير مؤسسي — منهجية تجعل المؤسسة بأكملها تُفكّر بوضوح، تتعلّم بشكل مستمر، وتتصرف بذكاء بناءً على وعي حقيقي بواقعها الداخلي والخارجي. المؤسسة التي تُتقن هذا ليست التي تمتلك أغلى الأنظمة — بل التي نجحت في خلق ثقافة يُقدَّر فيها السؤال الصحيح قبل الإجابة السريعة."</p>
+    <cite>— مستوحى من ريمفيداس سكيريوس · Business Intelligence · Springer، 2021</cite>
+  </div>
+</div>
+
+<div class="footer">
+  ملخص تفصيلي شامل لكتاب:<br>
+  <strong>Business Intelligence: An Advanced Informing Approach</strong><br>
+  ريمفيداس سكيريوس · جامعة فيلنيوس · Springer، 2021 · الفصول 1 إلى 11
+</div>
+
+
+
+</div><!-- /wrap -->
+
+<script>
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('pg').style.width=(h>0?s/h*100:0)+'%';
+});
+function toggleSB(){document.getElementById('sb').classList.toggle('open');}
+document.addEventListener('click',e=>{
+  const sb=document.getElementById('sb'),btn=document.querySelector('.menu-btn');
+  if(!sb.contains(e.target)&&!btn.contains(e.target))sb.classList.remove('open');
+});
+const chIds=['cover','hero','ch1','ch2','ch3','ch4','ch5','ch6','ch7','ch8','ch9','ch10','ch11','conclusion'];
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY+200;
+  chIds.forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    const lk=document.querySelector('.sb a[href="#'+id+'"]');
+    if(!lk)return;
+    if(el.offsetTop<=y&&(el.offsetTop+el.offsetHeight)>y)lk.classList.add('act');
+    else lk.classList.remove('act');
+  });
+});
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.06});
+document.querySelectorAll('.chapter').forEach(c=>obs.observe(c));
+</script>
+</body>
+</html>
